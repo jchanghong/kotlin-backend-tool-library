@@ -1,0 +1,12 @@
+settings.xml maven加如下
+
+ <servers>
+	 <server>
+       <id>oss</id>
+       <username>jchanghong</username>
+       <password>!b58r5gsHu*0</password>
+     </server>
+  </servers>
+
+  下载 gpg4win 软件
+  123buyaodaohao

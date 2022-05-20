@@ -1,0 +1,597 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<groupId>com.github.jchanghong</groupId>
+	<artifactId>kbtool-parent</artifactId>
+	<version>2.7.0-SNAPSHOT</version>
+	<name>kbtool-parent</name>
+	<description>支持java和kotlin混合编程的maven项目，把后端基本常用的库全部引入，避免到处找依赖</description>
+	<url>https://github.com/jchanghong/kotlin-backend-tool-library.git</url>
+
+	<modules>
+		<module>kbtool-all</module>
+		<module>kbtool-min</module>
+		<module>mavenSampleProject</module>
+		<module>mavenSampleProject-kbtool-min</module>
+	</modules>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<properties>
+		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+		<!-- versions -->
+		<compile.version>8</compile.version>
+		<kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
+		<java.version>1.8</java.version>
+		<kotlin.version>1.6.21</kotlin.version>
+		<okhttp3.version>4.9.3</okhttp3.version>
+		<kotlin-coroutines.version>1.6.1</kotlin-coroutines.version>
+		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+<!--		<jackson-bom.version>2.13.1</jackson-bom.version>-->
+<!--		<json-path.version>2.6.0</json-path.version>-->
+<!--		<commons-lang3.version>3.12.0</commons-lang3.version>-->
+<!--		<log4j2.version>2.17.1</log4j2.version>-->
+		<!--		<elasticsearch.version>7.6.2</elasticsearch.version>-->
+		<!--		<freemarker.version>2.3.31</freemarker.version>-->
+		<!--		<gson.version>2.8.8</gson.version>-->
+		<!--		<h2.version>1.4.200</h2.version>-->
+		<!--		<hibernate.version>5.4.32.Final</hibernate.version>-->
+		<!--		<hibernate-validator.version>6.1.7.Final</hibernate-validator.version>-->
+		<!--		<hikaricp.version>3.4.5</hikaricp.version>-->
+		<!--		<json-path.version>2.6.0</json-path.version>-->
+		<!--		<kafka.version>2.5.1</kafka.version>-->
+		<!--		<lettuce.version>5.3.7.RELEASE</lettuce.version>-->
+<!--		<postgresql.version>42.3.1</postgresql.version>-->
+		<!--		<spring-amqp.version>2.2.18.RELEASE</spring-amqp.version>-->
+		<!--		<spring-data-releasetrain.version>Neumann-SR9</spring-data-releasetrain.version>-->
+		<!--		<spring-kafka.version>2.5.16.RELEASE</spring-kafka.version>-->
+		<!--		<spring-session-bom.version>Dragonfruit-SR3</spring-session-bom.version>-->
+		<spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
+		<spring-boot.version>2.7.0</spring-boot.version>
+<!--		<hutool-all.version>5.7.18</hutool-all.version>-->
+<!--		<myexcel.version>3.12.1</myexcel.version>-->
+<!--		<guava.version>31.0.1-jre</guava.version>-->
+<!--		<ojdbc8.version>19.3.0.0</ojdbc8.version>-->
+<!--		<hibernate-types-52.version>2.14.0</hibernate-types-52.version>-->
+<!--		<commons-fileupload.version>1.4</commons-fileupload.version>-->
+<!--		<commons-net.version>3.8.0</commons-net.version>-->
+		<springfox.version>3.0.0</springfox.version>
+<!--		<commons-collections4.version>4.4</commons-collections4.version>-->
+<!--		<cglib.version>3.3.0</cglib.version>-->
+<!--		<fastjson.version>1.2.78</fastjson.version>-->
+<!--		<mybatis-plus-boot-starter.version>3.5.0</mybatis-plus-boot-starter.version>-->
+<!--		<mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>-->
+<!--		<lombok.version>1.18.22</lombok.version>-->
+<!--		<spring-framework.version>5.2.18.RELEASE</spring-framework.version>-->
+<!--		<spring-security.version>5.3.12.RELEASE</spring-security.version>-->
+<!--		<spring-kafka.version>2.5.16.RELEASE</spring-kafka.version>-->
+	</properties>
+
+	<dependencies>
+<!--		每个后端项目都需要的依赖-->
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-reflect</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-stdlib-jdk8</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>${spring-boot.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hamcrest</groupId>
+					<artifactId>hamcrest-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<issueManagement>
+		<system>Github Issue</system>
+		<url>https://github.com/jchanghong/kbtool-tools/issues</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>jchanghong</name>
+			<email>3200601@qq.com</email>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git@github.com:jchanghong/kotlin-backend-tool-library.git</connection>
+		<developerConnection>scm:git@github.com:jchanghong/kotlin-backend-tool-library.git</developerConnection>
+		<url>git@github.com:jchanghong/kotlin-backend-tool-library.git</url>
+	</scm>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-maven-plugin</artifactId>
+				<version>${kotlin.version}</version>
+				<executions>
+					<execution>
+						<id>kapt</id>
+						<goals>
+							<goal>kapt</goal>
+						</goals>
+						<phase>none</phase>
+						<configuration>
+							<sourceDirs>
+								<sourceDir>src/main/kotlin</sourceDir>
+								<sourceDir>src/main/java</sourceDir>
+							</sourceDirs>
+							<annotationProcessorPaths>
+								<!-- Specify your annotation processors here. -->
+								<annotationProcessorPath>
+									<groupId>com.google.dagger</groupId>
+									<artifactId>dagger-compiler</artifactId>
+									<version>2.42</version>
+								</annotationProcessorPath>
+							</annotationProcessorPaths>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>compile</id>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<configuration>
+							<sourceDirs>
+								<sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+								<sourceDir>${project.basedir}/src/main/java</sourceDir>
+							</sourceDirs>
+						</configuration>
+					</execution>
+					<execution>
+						<id>test-compile</id>
+						<goals>
+							<goal>test-compile</goal>
+						</goals>
+						<configuration>
+							<sourceDirs>
+								<sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+								<sourceDir>${project.basedir}/src/test/java</sourceDir>
+							</sourceDirs>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<nowarn>false</nowarn>  <!-- Disable warnings -->
+					<languageVersion>1.6</languageVersion>  <!-- Disable warnings -->
+					<apiVersion>1.6</apiVersion>  <!-- Disable warnings -->
+					<jvmTarget>1.8</jvmTarget>  <!-- Disable warnings -->
+					<args>
+						<arg>-version</arg> <!-- Enable strict mode for JSR-305 annotations -->
+						<!--                        <arg>-X</arg>-->
+						<!-- Enable strict mode for JSR-305 annotations -->
+						<arg>-Xjsr305=strict</arg> <!-- Enable strict mode for JSR-305 annotations -->
+					</args>
+					<compilerPlugins>
+						<!-- Or "spring" for the Spring support -->
+						<plugin>all-open</plugin>
+						<plugin>spring</plugin>
+						<!-- Or "jpa" for JPA support -->
+						<!--                        <plugin>no-arg</plugin>-->
+						<plugin>jpa</plugin>
+						<plugin>lombok</plugin>
+						<!--                        <plugin>sam-with-receiver</plugin>-->
+					</compilerPlugins>
+					<pluginOptions>
+						<!--                        <option>sam-with-receiver:annotation=com.my.SamWithReceiver</option>-->
+						<!--                        <option>no-arg:annotation=org.springframework.stereotype.Component</option>-->
+						<!-- Each annotation is placed on its own line -->
+						<option>all-open:annotation=org.springframework.stereotype.Component</option>
+						<!--                            <option>lombok:config=${project.basedir}/lombok.config</option>-->
+					</pluginOptions>
+				</configuration>
+				<dependencies>
+					<!--  <dependency>
+						  <groupId>org.jetbrains.kotlin</groupId>
+						  <artifactId>kotlin-maven-sam-with-receiver</artifactId>
+						  <version>${kotlin.version}</version>
+					  </dependency>-->
+					<dependency>
+						<groupId>org.jetbrains.kotlin</groupId>
+						<artifactId>kotlin-maven-allopen</artifactId>
+						<version>${kotlin.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jetbrains.kotlin</groupId>
+						<artifactId>kotlin-maven-noarg</artifactId>
+						<version>${kotlin.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jetbrains.kotlin</groupId>
+						<artifactId>kotlin-maven-lombok</artifactId>
+						<version>${kotlin.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok</artifactId>
+						<version>${lombok.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+				<executions>
+					<!-- Replacing default-compile as it is treated specially by maven -->
+					<execution>
+						<id>default-compile</id>
+						<phase>none</phase>
+					</execution>
+					<!-- Replacing default-testCompile as it is treated specially by maven -->
+					<execution>
+						<id>default-testCompile</id>
+						<phase>none</phase>
+					</execution>
+					<execution>
+						<id>java-compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>java-test-compile</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+						<configuration>
+							<failOnError>false</failOnError>
+							<failOnWarning>false</failOnWarning>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<!--					<release>8</release>-->
+					<annotationProcessorPaths>
+						<annotationProcessorPath>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</annotationProcessorPath>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<!--			dokka:javadoc - generate HTML documentation in Javadoc format (showing declarations in Java syntax)-->
+			<!--			dokka:javadocJar - generate a .jar file with Javadoc format documentation-->
+
+
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>oss</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+				</snapshotRepository>
+				<repository>
+					<id>oss</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jetbrains.dokka</groupId>
+						<artifactId>dokka-maven-plugin</artifactId>
+						<version>1.6.21</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<!--						<phase>pre-site</phase>-->
+								<goals>
+									<goal>javadocJar</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<dokkaPlugins>
+								<plugin>
+									<groupId>org.jetbrains.dokka</groupId>
+									<artifactId>kotlin-as-java-plugin</artifactId>
+									<version>1.6.21</version>
+								</plugin>
+							</dokkaPlugins>
+						</configuration>
+					</plugin>
+					<!-- Javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>3.4.0</version>
+						<executions>
+							<execution>
+								<phase>none</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Source -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>3.2.1</version>
+						<executions>
+							<execution>
+								<id>oss</id>
+								<phase>package</phase>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- 测试覆盖度 -->
+					<!--		<plugin>
+								<groupId>org.codehaus.mojo</groupId>
+								<artifactId>cobertura-maven-plugin</artifactId>
+								<version>2.7</version>
+								<configuration>
+									<formats>
+										<format>html</format>
+										<format>xml</format>
+									</formats>
+									<check />
+								</configuration>
+							</plugin>-->
+					<!-- Gpg Signature -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>3.0.1</version>
+<!--						<version>1.6</version>-->
+						<executions>
+							<execution>
+								<id>oss</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.13</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>oss</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+							<stagingProgressTimeoutMinutes>10</stagingProgressTimeoutMinutes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<dependencyManagement>
+		<dependencies>
+			<!--		hutool-->
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-all</artifactId>
+				<version>5.8.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>42.3.5</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.liaochong</groupId>
+				<artifactId>myexcel</artifactId>
+				<version>4.2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>31.1-jre</version>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle.ojdbc</groupId>
+				<artifactId>ojdbc8</artifactId>
+				<version>19.3.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle.ojdbc</groupId>
+				<artifactId>orai18n</artifactId>
+				<version>19.3.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.squareup.okhttp3</groupId>
+				<artifactId>okhttp</artifactId>
+				<version>${okhttp3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.squareup.okhttp3</groupId>
+				<artifactId>okhttp-tls</artifactId>
+				<version>${okhttp3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.vladmihalcea</groupId>
+				<artifactId>hibernate-types-52</artifactId>
+				<version>2.16.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>3.8.0</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-bean-validators</artifactId>
+				<version>${springfox.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-boot-starter</artifactId>
+				<version>${springfox.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-data-rest</artifactId>
+				<version>${springfox.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-oas</artifactId>
+				<version>${springfox.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${springfox.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${springfox.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>4.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-reflect</artifactId>
+				<version>${kotlin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-stdlib-jdk8</artifactId>
+				<version>${kotlin.version}</version>
+			</dependency>
+			<!--		以上必要依赖-->
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>3.3.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.80</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>3.5.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-text</artifactId>
+				<version>1.9</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlbeans</groupId>
+				<artifactId>xmlbeans</artifactId>
+				<version>3.1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jetbrains.kotlinx</groupId>
+				<artifactId>kotlinx-coroutines-core-jvm</artifactId>
+				<version>${kotlin-coroutines.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jetbrains.kotlinx</groupId>
+				<artifactId>kotlinx-coroutines-core</artifactId>
+				<version>${kotlin-coroutines.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jetbrains.kotlinx</groupId>
+				<artifactId>kotlinx-coroutines-reactive</artifactId>
+				<version>${kotlin-coroutines.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>1.15.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-generator</artifactId>
+				<version>3.5.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-bom</artifactId>
+				<version>${kotlin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-bom</artifactId>
+				<version>${spring-security.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.session</groupId>
+				<artifactId>spring-session-bom</artifactId>
+				<version>${spring-session-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

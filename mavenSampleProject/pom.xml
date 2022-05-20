@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.example</groupId>
+	<artifactId>mavenSampleProject</artifactId>
+	<packaging>jar</packaging>
+	<name>mavenSampleProject</name>
+	<url>http://www.myorganization.org</url>
+	<description>maven工程模板，集成kotlin</description>
+	<parent>
+		<groupId>com.github.jchanghong</groupId>
+		<artifactId>kbtool-parent</artifactId>
+		<version>2.7.0-SNAPSHOT</version>
+	</parent>
+	<!--    <properties>-->
+	<!--        <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>-->
+	<!--        <java.version>1.8</java.version>-->
+	<!--        <kotlin.version>1.5.31</kotlin.version>-->
+	<!--        <okhttp3.version>4.9.2</okhttp3.version>-->
+	<!--        <kotlin-coroutines.version>1.5.2</kotlin-coroutines.version>-->
+	<!--        <kotlin.compiler.incremental>true</kotlin.compiler.incremental>-->
+	<!--        <jackson-bom.version>2.12.5</jackson-bom.version>-->
+	<!--        <activemq.version>5.15.15</activemq.version>-->
+	<!--        <commons-codec.version>1.15</commons-codec.version>-->
+	<!--        <commons-lang3.version>3.12.0</commons-lang3.version>-->
+	<!--        <ehcache3.version>3.8.1</ehcache3.version>-->
+	<!--        <elasticsearch.version>7.6.2</elasticsearch.version>-->
+	<!--        <freemarker.version>2.3.31</freemarker.version>-->
+	<!--        <gson.version>2.8.8</gson.version>-->
+	<!--        <h2.version>1.4.200</h2.version>-->
+	<!--        <hibernate.version>5.4.32.Final</hibernate.version>-->
+	<!--        <hibernate-validator.version>6.1.7.Final</hibernate-validator.version>-->
+	<!--        <hikaricp.version>3.4.5</hikaricp.version>-->
+	<!--        <json-path.version>2.6.0</json-path.version>-->
+	<!--        <kafka.version>2.5.1</kafka.version>-->
+	<!--        <lettuce.version>5.3.7.RELEASE</lettuce.version>-->
+	<!--        <postgresql.version>42.2.24</postgresql.version>-->
+	<!--        <spring-amqp.version>2.2.18.RELEASE</spring-amqp.version>-->
+	<!--        <spring-data-releasetrain.version>Neumann-SR9</spring-data-releasetrain.version>-->
+	<!--        <spring-kafka.version>2.5.16.RELEASE</spring-kafka.version>-->
+	<!--        <spring-security.version>5.3.11.RELEASE</spring-security.version>-->
+	<!--        <spring-session-bom.version>Dragonfruit-SR3</spring-session-bom.version>-->
+	<!--    </properties>-->
+	<build>
+		<finalName>mavenSampleProject</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>2.7.0</version>
+					<configuration>
+						<includeSystemScope>true</includeSystemScope>
+						<!--                    <outputDirectory>${project.basedir}/../output/${project.artifactId}</outputDirectory>-->
+						<mainClass>org.apache.myfaces.MavenApp</mainClass>
+						<!--                    <fork>true</fork>-->
+					</configuration>
+					<executions>
+						<execution>
+							<id>repackage</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+							<!--<configuration>
+								<classifier>boot</classifier>
+							</configuration>-->
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<!-- Project dependencies  mvn dependency:sources -DdownloadSources=true -DdownloadJavadocs=true-->
+	<!--    dependency:tree-->
+	<!--    -Dmaven.test.skip=true -->
+	<dependencies>
+		<dependency>
+			<groupId>com.github.jchanghong</groupId>
+			<artifactId>kbtool-all</artifactId>
+			<version>2.7.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-properties-migrator</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<optional>true</optional>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+</project>
