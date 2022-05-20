@@ -14,7 +14,7 @@
 	<modules>
 		<module>kbtool-all</module>
 		<module>kbtool-min</module>
-		<module>mavenSampleProject</module>
+<!--		<module>mavenSampleProject</module>-->
 		<module>mavenSampleProject-kbtool-min</module>
 	</modules>
 	<parent>
