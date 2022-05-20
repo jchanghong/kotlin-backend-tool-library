@@ -12,10 +12,9 @@
 	<url>https://github.com/jchanghong/kotlin-backend-tool-library.git</url>
 
 	<modules>
-		<module>kbtool-all</module>
-		<module>kbtool-min</module>
-<!--		<module>mavenSampleProject</module>-->
-		<module>mavenSampleProject-kbtool-min</module>
+		<module>kbtool-lib</module>
+		<module>mavenSampleProject</module>
+		<module>mavenSampleProject-min</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -426,7 +425,7 @@
 			<dependency>
 				<groupId>com.github.liaochong</groupId>
 				<artifactId>myexcel</artifactId>
-				<version>4.2.0</version>
+				<version>3.12.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.guava</groupId>

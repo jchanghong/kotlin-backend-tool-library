@@ -12,8 +12,8 @@ class WebController {
 	}
 }
 
-@FeignClient("consul")
+@FeignClient(value = "testCommonAllApp", path = "/test")
 interface FeignClientTest {
-	@GetMapping("/")
+    @GetMapping("/hello")
 	fun hello(): String
 }

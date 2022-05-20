@@ -2,6 +2,7 @@ package org.apache.myfaces
 
 import cn.hutool.http.HttpUtil
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Timeout
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
@@ -28,6 +29,7 @@ class 测试consul {
 	//    @Autowired
 //    lateinit var restTemplate: RestTemplate
 	@Test
+	@Timeout(5000)
 	internal fun 测试consul() {
 		val services = discoveryClient.services
 		assert(services.isNullOrEmpty() == false)
@@ -37,6 +39,7 @@ class 测试consul {
 	}
 
 	@Test
+	@Timeout(5000)
 	internal fun 测试consul服务调用() {
 		val restTemplate = applicationContext.getBean(FeignClientTest::class.java)
 		val forEntity = restTemplate.hello()
