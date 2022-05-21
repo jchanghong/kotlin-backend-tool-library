@@ -10,12 +10,15 @@ import org.springframework.util.concurrent.SuccessCallback
 
 @Component
 class Task(@Qualifier("applicationTaskExecutor") val asyncListenableTaskExecutor: AsyncListenableTaskExecutor) :
-	ApplicationRunner {
-	override fun run(args: ApplicationArguments?) {
-		asyncListenableTaskExecutor.submitListenable {
-			println("in " + Thread.currentThread().name)
-		}.addCallback(SuccessCallback {
-			println("ok")
-		}, FailureCallback { println("fail") })
-	}
+    ApplicationRunner {
+    override fun run(args: ApplicationArguments?) {
+        asyncListenableTaskExecutor.submitListenable {
+            println("in " + Thread.currentThread().name)
+        }.addCallback(
+            SuccessCallback {
+                println("ok")
+            },
+            FailureCallback { println("fail") }
+        )
+    }
 }

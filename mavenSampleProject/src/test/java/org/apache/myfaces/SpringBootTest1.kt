@@ -14,34 +14,31 @@ import javax.persistence.EntityManager
 
 @JsonTest
 class SpringBootTest1 {
-	@Test
-	internal fun json1(@Autowired objectMapper: ObjectMapper?) {
-		assert(objectMapper != null)
-	}
+    @Test
+    internal fun json1(@Autowired objectMapper: ObjectMapper?) {
+        assert(objectMapper != null)
+    }
 }
 
 @WebMvcTest
 class WebTest {
-	@Test
-	internal fun name(@Autowired webController: WebController) {
-
-	}
+    @Test
+    internal fun name(@Autowired webController: WebController) {
+    }
 }
 
 @DataJpaTest
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 class MyNonTransactionalTests {
-	@Test
-	internal fun name(@Autowired entityManager: EntityManager) {
-
-	}
+    @Test
+    internal fun name(@Autowired entityManager: EntityManager) {
+    }
 }
 
 @JdbcTest
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 class MyTransactionalTests {
-	@Test
-	internal fun name(@Autowired jdbcTemplate: JdbcTemplate) {
-
-	}
+    @Test
+    internal fun name(@Autowired jdbcTemplate: JdbcTemplate) {
+    }
 }

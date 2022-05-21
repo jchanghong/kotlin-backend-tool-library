@@ -15,22 +15,22 @@ import java.util.*
 
 @Component
 class Config1 : Jackson2ObjectMapperBuilderCustomizer {
-	override fun customize(jacksonObjectMapperBuilder: Jackson2ObjectMapperBuilder) {
-		jacksonObjectMapperBuilder.dateFormat(SimpleDateFormat(DatePattern.NORM_DATETIME_MINUTE_PATTERN))
-		jacksonObjectMapperBuilder.serializerByType(
-			LocalDateTime::class.java,
-			LocalDateTimeSerializer(DatePattern.NORM_DATETIME_FORMATTER)
-		)
-	}
+    override fun customize(jacksonObjectMapperBuilder: Jackson2ObjectMapperBuilder) {
+        jacksonObjectMapperBuilder.dateFormat(SimpleDateFormat(DatePattern.NORM_DATETIME_MINUTE_PATTERN))
+        jacksonObjectMapperBuilder.serializerByType(
+            LocalDateTime::class.java,
+            LocalDateTimeSerializer(DatePattern.NORM_DATETIME_FORMATTER)
+        )
+    }
 }
 
 @Component
 class Jackson1(val objectMapper: ObjectMapper) : ApplicationRunner {
 
-	override fun run(args: ApplicationArguments?) {
-		val writeValueAsString = objectMapper.writeValueAsString(Date())
-		println(writeValueAsString)
-		println(objectMapper.writeValueAsString(LocalDateTime.now()))
-		println(JsonHelper.objectMapper === objectMapper)
-	}
+    override fun run(args: ApplicationArguments?) {
+        val writeValueAsString = objectMapper.writeValueAsString(Date())
+        println(writeValueAsString)
+        println(objectMapper.writeValueAsString(LocalDateTime.now()))
+        println(JsonHelper.objectMapper === objectMapper)
+    }
 }

@@ -1,5 +1,5 @@
 package org.apache.myfaces
 
 fun main() {
-	println("中文")
+    println("中文")
 }

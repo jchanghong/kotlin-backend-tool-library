@@ -9,17 +9,19 @@ import org.springframework.transaction.annotation.Transactional
 
 @SpringBootTest
 class JpaTest {
-	@Autowired
-	lateinit var myJpaReposotory: MyJpaReposotory
+    @Autowired
+    lateinit var myJpaReposotory: MyJpaReposotory
 
-	@Test
-	@Transactional
-	internal fun `测试jpa`() {
-		assert(myJpaReposotory.findAll().size == 0)
-		myJpaReposotory.save(JpaEntity().apply {
-			indexCode = "code"
-			tagList = ""
-		})
-		assert(myJpaReposotory.findAll().size == 1)
-	}
+    @Test
+    @Transactional
+    internal fun `测试jpa`() {
+        assert(myJpaReposotory.findAll().size == 0)
+        myJpaReposotory.save(
+            JpaEntity().apply {
+                indexCode = "code"
+                tagList = ""
+            }
+        )
+        assert(myJpaReposotory.findAll().size == 1)
+    }
 }

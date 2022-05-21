@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class WebController {
-	@GetMapping("/hello")
-	fun hello(): String {
-		return "hello"
-	}
+    @GetMapping("/hello")
+    fun hello(): String {
+        return "hello"
+    }
 }
 
 @FeignClient(value = "testCommonAllApp", path = "/test")
 interface FeignClientTest {
     @GetMapping("/hello")
-	fun hello(): String
+    fun hello(): String
 }

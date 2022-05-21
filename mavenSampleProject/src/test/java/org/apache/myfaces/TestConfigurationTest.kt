@@ -7,16 +7,14 @@ import org.springframework.boot.test.context.TestConfiguration
 
 @SpringBootTest(args = ["--app.test=one"])
 class TestConfigurationTest {
-	@Value("\${app.test}")
-	lateinit var string: String
+    @Value("\${app.test}")
+    lateinit var string: String
 
-	@TestConfiguration
-	class TestConfiguration1 {
+    @TestConfiguration
+    class TestConfiguration1
 
-	}
-
-	@Test
-	internal fun TestConfigurationtest() {
-		assert("one" == string)
-	}
+    @Test
+    internal fun TestConfigurationtest() {
+        assert("one" == string)
+    }
 }

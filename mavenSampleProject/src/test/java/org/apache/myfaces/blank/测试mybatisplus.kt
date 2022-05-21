@@ -9,17 +9,19 @@ import org.springframework.transaction.annotation.Transactional
 
 @SpringBootTest
 class 测试mybatisplus {
-	@Autowired
-	lateinit var mybatisMapper: MyMybatisMapper
+    @Autowired
+    lateinit var mybatisMapper: MyMybatisMapper
 
-	@Test
-	@Transactional
-	internal fun `测试mybatisplus`() {
-		assert(mybatisMapper.selectList(null).size == 0)
-		mybatisMapper.insert(MybatisEntity().apply {
-			indexCode = "code"
-			tagList = ""
-		})
-		assert(mybatisMapper.selectList(null).size == 1)
-	}
+    @Test
+    @Transactional
+    internal fun `测试mybatisplus`() {
+        assert(mybatisMapper.selectList(null).size == 0)
+        mybatisMapper.insert(
+            MybatisEntity().apply {
+                indexCode = "code"
+                tagList = ""
+            }
+        )
+        assert(mybatisMapper.selectList(null).size == 1)
+    }
 }

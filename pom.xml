@@ -135,6 +135,21 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>com.github.gantsign.maven</groupId>
+				<artifactId>ktlint-maven-plugin</artifactId>
+				<version>1.13.1</version>
+				<executions>
+					<execution>
+						<id>format-and-check</id>
+						<phase>none</phase>
+						<goals>
+							<goal>format</goal>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.jetbrains.kotlin</groupId>
 				<artifactId>kotlin-maven-plugin</artifactId>
 				<version>${kotlin.version}</version>
@@ -411,6 +426,11 @@
 	</profiles>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.redisson</groupId>
+				<artifactId>redisson</artifactId>
+				<version>3.17.1</version>
+			</dependency>
 			<!--		hutool-->
 			<dependency>
 				<groupId>cn.hutool</groupId>

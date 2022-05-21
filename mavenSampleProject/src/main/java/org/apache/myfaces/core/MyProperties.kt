@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated
 @ConfigurationProperties("my.service")
 @Validated
 public class MyProperties(@field:Length(min = 4) val test: String) : ApplicationRunner {
-	override fun run(args: ApplicationArguments?) {
-		check("test" == test)
-	}
+    override fun run(args: ApplicationArguments?) {
+        check("test" == test)
+    }
 }

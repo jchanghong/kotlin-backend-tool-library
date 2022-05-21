@@ -1,7 +1,5 @@
 package org.apache.myfaces.test
 
-import cn.hutool.poi.excel.ExcelUtil
-
 /**
  * zdr人脸相似度对比出处理
  * SELECT i.rxsfyqid ,i.zdr_id,i.snap_pic_url,h.face_pic_url,i.similarity,i.alarm_time FROM fusion_alarm_info i ,fusion_alarm_human h
@@ -14,5 +12,4 @@ create at 2021-12-2021/12/23-19:12
 @author jiangchanghong
  */
 fun main() {
-
 }
