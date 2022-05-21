@@ -13,7 +13,7 @@ fun main() {
         "voltageLow": 0,
         "linkageDevCode": "",
         "siteNo": "",
-        "vendor": "HIKVISION",
+     
         "rfidIdentifier": "01500234024416",
         "longitude": 0
     }

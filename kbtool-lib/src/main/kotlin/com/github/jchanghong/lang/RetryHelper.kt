@@ -1,16 +1,11 @@
 package com.github.jchanghong.lang
 
-import cn.hutool.core.date.DateUtil
+import cn.hutool.core.util.RandomUtil
 import cn.hutool.system.SystemUtil
-import com.github.rholder.retry.BlockStrategies
-import com.github.rholder.retry.RetryerBuilder
-import com.github.rholder.retry.StopStrategies
-import com.github.rholder.retry.WaitStrategies
-import org.springframework.retry.support.RetryTemplateBuilder
-import java.util.Date
-import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledExecutorService
-import java.util.concurrent.TimeUnit
+import com.github.jchanghong.log.kInfo
+import com.github.rholder.retry.*
+import java.util.*
+import java.util.concurrent.*
 
 /**
  * guava 重试。
@@ -18,26 +13,83 @@ create at 2022-02-2022/2/10-11:46
 @author jiangchanghong
  */
 object RetryHelper {
-    /** */
-    fun <V> newRetryerBuilder(): RetryerBuilder<V> {
-        return RetryerBuilder.newBuilder<V>()
-            .withStopStrategy(StopStrategies.stopAfterAttempt(6))
+    private var retryListener: RetryListener? = null
+    fun withRetryListener(retryListener: RetryListener) {
+        this.retryListener = retryListener
+    }
+
+    private val fixedThreadPool by lazy { Executors.newFixedThreadPool(SystemUtil.getRuntimeInfo().runtime.availableProcessors()) }
+
+    /** 重试4次 */
+    private val retry4TimesRetryer by lazy {
+        val builder = RetryerBuilder.newBuilder<Any?>()
+            .retryIfException()
+            .retryIfResult { it == null }
+            .withStopStrategy(StopStrategies.stopAfterAttempt(4))
             .withBlockStrategy(BlockStrategies.threadSleepStrategy())
-            .withWaitStrategy(WaitStrategies.fibonacciWait(1000, 30, TimeUnit.MINUTES))
-            .retryIfExceptionOfType(Exception::class.java)
+            .withWaitStrategy(WaitStrategies.incrementingWait(1, TimeUnit.MILLISECONDS, 1, TimeUnit.MILLISECONDS))
+        if (retryListener != null) {
+            builder.withRetryListener(retryListener!!)
+        }
+        builder.build()
+    }
+
+    //    一直重试
+    private val neverStopRetryer by lazy {
+        val builder = RetryerBuilder.newBuilder<Any?>()
+            .retryIfException()
+            .retryIfResult { it == null }
+            .withStopStrategy(StopStrategies.neverStop())
+            .withBlockStrategy(BlockStrategies.threadSleepStrategy())
+            .withWaitStrategy(WaitStrategies.fibonacciWait(1, 60, TimeUnit.MINUTES))
+        if (retryListener != null) {
+            builder.withRetryListener(retryListener!!)
+        }
+        builder
+            .build()
+    }
+
+    /** 异常或者返回null，会重试最多4次*/
+    fun submitByRetry4Times(callable: Callable<Any?>): Future<Any?> {
+        val future = fixedThreadPool.submit(Callable {
+            retry4TimesRetryer.call(callable)
+        })
+        return future
+    }
+
+    /** 异常或者返回null，会重试最多N次*/
+    fun submitByRetryNTimes(callable: Callable<Any?>): Future<Any?> {
+        val future = fixedThreadPool.submit(Callable {
+            neverStopRetryer.call(callable)
+        })
+        return future
     }
 }
 
 fun main() {
-    println(SystemUtil.getRuntimeInfo().runtime.availableProcessors())
-    val retryer = RetryHelper.newRetryerBuilder<Int>()
-        .withStopStrategy(StopStrategies.stopAfterAttempt(3))
-        .build()
-    var w=0L
-    val call = retryer.call {
-        var l = Date().time - w
-        w=Date().time
-        println(l)
-        1 / "0".toInt() + 3 }
-    println(call)
+    var w = 0L
+    RetryHelper.withRetryListener(object : RetryListener {
+        override fun <V : Any?> onRetry(attempt: Attempt<V>) {
+            if (attempt.hasResult() && attempt.get() != null) {
+                kInfo("尝试${attempt.attemptNumber}次后成功")
+            }
+        }
+    })
+    val callable: Callable<Any?> = Callable {
+        val l = Date().time - w
+        w = Date().time
+//        kInfo(l.toString())
+        val randomInt = RandomUtil.randomInt(10)
+//        println(randomInt)
+        val i = if (randomInt <= 5) {
+            1 / "0".toInt() + 3
+        } else {
+            1
+        }
+        i
+    }
+    for (future in (1..200).map { RetryHelper.submitByRetryNTimes(callable) }) {
+        check(future.get().toString() == "1")
+    }
+    println("test end")
 }
