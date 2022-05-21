@@ -9,7 +9,6 @@ import cn.hutool.json.JSONUtil
 import com.github.jchanghong.http.utils.JchCookieJar
 import com.github.jchanghong.http.utils.JchTrustAllCerts
 import com.github.jchanghong.http.utils.JchTrustAllHostnameVerifier
-import com.github.jchanghong.lang.ThreadHelper
 import com.google.common.net.MediaType
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -23,6 +22,7 @@ import java.io.IOException
 import java.security.SecureRandom
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSocketFactory
@@ -33,9 +33,10 @@ import javax.net.ssl.TrustManager
  * pvia开头的函数就是
  * */
 object HttpHelper {
+    private val newScheduledThreadPool2=Executors.newScheduledThreadPool(2)
     /** 每2分钟获取一次，防止登录过期*/
     fun pvia_startTimer() {
-        ThreadHelper.newScheduledThreadPool2.scheduleWithFixedDelay({
+        newScheduledThreadPool2.scheduleWithFixedDelay({
             kotlin.runCatching {
                 if (systemCsrfUrlMap.isEmpty()) return@runCatching
                 for (url in systemCsrfUrlMap.values) {

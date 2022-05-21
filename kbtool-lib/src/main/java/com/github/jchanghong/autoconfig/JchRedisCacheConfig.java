@@ -21,35 +21,33 @@ import java.io.Serializable;
  * <p>
  * redis配置
  * </p>
- *
- * @author yangkai.shen
  */
 @Configuration
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 @EnableCaching
 public class JchRedisCacheConfig {
 
-	//    /**
-//     * 默认情况下的模板只能支持RedisTemplateString, String，也就是只能存入字符串，因此支持序列化
-//     */
-	@Bean
-	public RedisTemplate<String, Serializable> redisCacheTemplate(LettuceConnectionFactory redisConnectionFactory) {
-		RedisTemplate<String, Serializable> template = new RedisTemplate<>();
-		template.setKeySerializer(new StringRedisSerializer());
-		template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-		template.setConnectionFactory(redisConnectionFactory);
-		return template;
-	}
+    /**
+     * 默认情况下的模板只能支持RedisTemplateString, String，也就是只能存入字符串，因此支持序列化
+     */
+    @Bean
+    public RedisTemplate<String, Serializable> redisCacheTemplate(LettuceConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Serializable> template = new RedisTemplate<>();
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        template.setConnectionFactory(redisConnectionFactory);
+        return template;
+    }
 
-	//    /**
-//     * 配置使用注解的时候缓存配置，默认是序列化反序列化的形式，加上此配置则为 json 形式
-//     */
-	@Bean
-	public CacheManager cacheManager(RedisConnectionFactory factory) {
-		// 配置序列化
-		RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
-		RedisCacheConfiguration redisCacheConfiguration = config.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer())).serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+    /**
+     * 配置使用注解的时候缓存配置，默认是序列化反序列化的形式，加上此配置则为 json 形式
+     */
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory factory) {
+        // 配置序列化
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
+        RedisCacheConfiguration redisCacheConfiguration = config.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer())).serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
 
-		return RedisCacheManager.builder(factory).cacheDefaults(redisCacheConfiguration).build();
-	}
+        return RedisCacheManager.builder(factory).cacheDefaults(redisCacheConfiguration).build();
+    }
 }
