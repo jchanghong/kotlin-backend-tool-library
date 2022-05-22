@@ -54,17 +54,21 @@ object RetryHelper {
 
     /** 异常或者返回null，会重试最多4次*/
     fun submitByRetry4Times(callable: Callable<Any?>): Future<Any?> {
-        val future = fixedThreadPool.submit(Callable {
-            retry4TimesRetryer.call(callable)
-        })
+        val future = fixedThreadPool.submit(
+            Callable {
+                retry4TimesRetryer.call(callable)
+            }
+        )
         return future
     }
 
     /** 异常或者返回null，会重试最多N次*/
     fun submitByRetryNTimes(callable: Callable<Any?>): Future<Any?> {
-        val future = fixedThreadPool.submit(Callable {
-            neverStopRetryer.call(callable)
-        })
+        val future = fixedThreadPool.submit(
+            Callable {
+                neverStopRetryer.call(callable)
+            }
+        )
         return future
     }
 }

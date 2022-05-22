@@ -15,13 +15,13 @@
  */
 package com.github.jchanghong.http.okhttp
 
-//import com.squareup.moshi.JsonClass
-//import com.squareup.moshi.Moshi
-//import okhttp3.OkHttpClient
-//import okhttp3.Request
-//import java.io.IOException
+// import com.squareup.moshi.JsonClass
+// import com.squareup.moshi.Moshi
+// import okhttp3.OkHttpClient
+// import okhttp3.Request
+// import java.io.IOException
 //
-//class ParseResponseWithMoshi {
+// class ParseResponseWithMoshi {
 //    private val client = OkHttpClient()
 //    private val moshi = Moshi.Builder().build()
 //    private val gistJsonAdapter = moshi.adapter(Gist::class.java)
@@ -47,8 +47,8 @@ package com.github.jchanghong.http.okhttp
 //
 //    @JsonClass(generateAdapter = true)
 //    data class GistFile(var content: String?)
-//}
+// }
 //
-//fun main() {
+// fun main() {
 //    ParseResponseWithMoshi().run()
-//}
+// }

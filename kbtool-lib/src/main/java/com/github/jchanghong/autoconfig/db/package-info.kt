@@ -1,4 +1,4 @@
-package com.github.jchanghong.autoconfig.db;
+package com.github.jchanghong.autoconfig.db
 
 /**
  * 数据库自动配置

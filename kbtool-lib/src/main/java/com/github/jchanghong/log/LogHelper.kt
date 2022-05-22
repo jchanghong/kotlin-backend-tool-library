@@ -5,7 +5,7 @@ import cn.hutool.core.util.StrUtil
 import org.slf4j.LoggerFactory
 
 internal class LogHelper {
-    fun log(): Unit {
+    fun log() {
         kInfo("sasaaaaaa")
     }
 }
@@ -33,7 +33,6 @@ fun kDebug(format: String?, vararg arguments: Any?) {
     LoggerFactory.getLogger(CallerUtil.getCallerCaller()).debug(StrUtil.format(format, arguments))
 }
 
-
 /**
  * Info等级日志，小于Warn
  *
@@ -44,7 +43,6 @@ fun kDebug(format: String?, vararg arguments: Any?) {
 fun kInfo(format: String?, vararg arguments: Any?) {
     LoggerFactory.getLogger(CallerUtil.getCallerCaller()).info(StrUtil.format(format, arguments))
 }
-
 
 /**
  * Error等级日志<br></br>

@@ -1,6 +1,5 @@
 package com.github.jchanghong.http.utils
 
-
 import com.github.jchanghong.http.okhttpLog
 import okhttp3.Cookie
 import okhttp3.CookieJar
@@ -26,10 +25,10 @@ class JchCookieJar(private val cookieStore: ConcurrentHashMap<String, Concurrent
         val rootHashMap = cookieStore.getOrPut(url.host + "/") { ConcurrentHashMap() }
         hashMap.putAll(rootHashMap)
         if (!pathOne.isNullOrBlank()) {
-            val rootHashMap2 = cookieStore.getOrPut(url.host + "/${pathOne}") { ConcurrentHashMap() }
+            val rootHashMap2 = cookieStore.getOrPut(url.host + "/$pathOne") { ConcurrentHashMap() }
             hashMap.putAll(rootHashMap2)
         }
-        okhttpLog("cookieJar loadForRequest ${url.host}${pathOne} :${hashMap.values.joinToString { it.name }}")
+        okhttpLog("cookieJar loadForRequest ${url.host}$pathOne :${hashMap.values.joinToString { it.name }}")
         return hashMap.values.toList()
     }
 }
@@ -46,7 +45,6 @@ class JchTrustAllCerts : X509TrustManager {
     override fun getAcceptedIssuers(): Array<X509Certificate> {
         return arrayOf()
     }
-
 }
 
 class JchTrustAllHostnameVerifier : HostnameVerifier {

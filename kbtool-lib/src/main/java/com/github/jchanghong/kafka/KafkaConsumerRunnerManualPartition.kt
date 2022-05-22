@@ -23,7 +23,7 @@ class KafkaConsumerRunnerManualPartition(
     private var consumer: KafkaConsumer<String?, String?>? = null
 
     /** 异常后重新初始化！！！！！*/
-    fun reInitKafkaConsumer(): Unit {
+    fun reInitKafkaConsumer() {
         kotlin.runCatching { consumer?.commitSync() }
         kotlin.runCatching { consumer?.close() }
         kotlin.runCatching { consumer?.closeQuietly() }
@@ -41,7 +41,7 @@ class KafkaConsumerRunnerManualPartition(
                 }
                 pollData()
             } catch (e: Throwable) {
-                log.error(e.localizedMessage + "kafka分区${partition} poll异常,重新初始化消费者后停止3秒")
+                log.error(e.localizedMessage + "kafka分区$partition poll异常,重新初始化消费者后停止3秒")
                 reInitKafkaConsumer()
                 ThreadUtil.sleep(3000)
             }

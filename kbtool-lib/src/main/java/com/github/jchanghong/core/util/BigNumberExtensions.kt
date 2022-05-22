@@ -120,5 +120,5 @@ inline fun BigInteger.isPrime(certainty: Int = 5, precise: Boolean = false): Boo
     indices.forEach {
         if (mod(it) == BigInteger.ZERO) return false
     }
-    return true;
+    return true
 }

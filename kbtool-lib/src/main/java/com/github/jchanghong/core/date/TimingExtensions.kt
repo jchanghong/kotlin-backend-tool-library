@@ -1,7 +1,9 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package com.github.jchanghong.core.util
+package com.github.jchanghong.core.date
 
+import com.github.jchanghong.core.util.roundDiv
+import com.github.jchanghong.core.util.with
 import java.io.PrintStream
 import java.math.MathContext
 import java.time.Duration
@@ -39,7 +41,6 @@ object Durations {
 
     /** Use this method only if [nanos] is extracted from [nanos()][me.carleslc.kotlin.extensions.time.nanos], otherwise resulting duration will be unexpected */
     fun fromSystemNanos(nanos: Long): Duration = betweenNanos(nanos, nanos())
-
 }
 
 inline fun measure(block: () -> Unit): Duration = measureNanoTime(block).nanoseconds

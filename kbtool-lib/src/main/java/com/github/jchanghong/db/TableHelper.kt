@@ -26,11 +26,9 @@ enum class JavaTypeName {
     JSONObject
 }
 
-
 fun main() {
     println(StrUtil.upperFirst("aInt"))
     println("aInt".uppercase())
-
 }
 
 /**
@@ -112,7 +110,6 @@ object TableHelper {
         return s.name
     }
 
-
     private fun Table.toDOName(): String {
         return "DO" + StrUtil.upperFirst(StrUtil.toCamelCase(tableName))
     }
@@ -134,7 +131,7 @@ object TableHelper {
     private val log = LoggerFactory.getLogger(TableHelper::class.java)!!
     private fun table(table: Table, packageName: String): String {
         return """
-|package ${packageName}
+|package $packageName
             |import com.baomidou.mybatisplus.annotation.*
 |import com.github.liaochong.myexcel.core.WorkbookType
 |import com.github.liaochong.myexcel.core.annotation.ExcelColumn
@@ -187,24 +184,26 @@ object TableHelper {
             else -> ""
         }
         val jacksonDate = when (javaType) {
-            "LocalDateTime" -> """ |    @get:JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+            "LocalDateTime" ->
+                """ |    @get:JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
             """
-            "LocalDate" -> """  |    @get:JsonFormat(pattern = "yyyy-MM-dd")
+            "LocalDate" ->
+                """  |    @get:JsonFormat(pattern = "yyyy-MM-dd")
             """
             else -> ""
         }
         val excel =
-            """|    @ExcelColumn(title = "${column.name.toCamelCase()}",order = ${index},  defaultValue = "${
-                column.typeEnum.ToDefaultValue(
-                    column
-                )
-            }", convertToString = false,format = "$format",mapping = "", width = ${width})
+            """|    @ExcelColumn(title = "${column.name.toCamelCase()}",order = $index,  defaultValue = "${
+            column.typeEnum.ToDefaultValue(
+                column
+            )
+            }", convertToString = false,format = "$format",mapping = "", width = $width)
         """
         val pkColumn = """|    @TableId(value = "${column.name}", type = IdType.AUTO)
         """
         val jsonHandler =
             if (javaType == JavaTypeName.JSONObject.name) ",jdbcType = JdbcType.OTHER,typeHandler = PGJsonTypeHandler::class" else ""
-        val oThercolumn = """|    @TableField(value = "${column.name}",exist = true, numericScale = "" ${jsonHandler})
+        val oThercolumn = """|    @TableField(value = "${column.name}",exist = true, numericScale = "" $jsonHandler)
         """
         val prop = """|    var  ${column.name.toCamelCase()} : $javaType ? = null"""
         return comment + excel + (if (pk) pkColumn else oThercolumn) + jacksonDate + prop
@@ -232,9 +231,9 @@ object TableHelper {
         val pkNames = table.pkNames
         return """
             ${table(table, packageName)}(${
-            table.columns.withIndex().joinToString(",") {
-                oneColumn(it.value, pkNames.contains(it.value.name), it.index)
-            }
+        table.columns.withIndex().joinToString(",") {
+            oneColumn(it.value, pkNames.contains(it.value.name), it.index)
+        }
         }
        |)
        ${toInsertBatchPGSQL()}
@@ -242,7 +241,7 @@ object TableHelper {
         """.trimMargin().trimIndent()
     }
 
-    fun toFile(datasource: DataSource, table: String, packageName: String, subProject: String? = null): Unit {
+    fun toFile(datasource: DataSource, table: String, packageName: String, subProject: String? = null) {
         this.datasource = datasource
         this.table = MetaUtil.getTableMeta(datasource, table)
         val packageName1 = "$packageName.dao"
@@ -286,16 +285,16 @@ object TableHelper {
 
     /**
      * 返回如下这样的,去掉关键字：
-    INSERT INTO check2_camera_info_tmp_1 ( index_code,
-    ok_record, ok_safe
-    )
-    VALUES
-    <foreach collection="list" separator="," item="a">
-    ( #{a.indexCode}
-    , #{a.okRecord}, #{a.okSafe}
-    )
-    </foreach>
-    on conflict do nothing
+     INSERT INTO check2_camera_info_tmp_1 ( index_code,
+     ok_record, ok_safe
+     )
+     VALUES
+     <foreach collection="list" separator="," item="a">
+     ( #{a.indexCode}
+     , #{a.okRecord}, #{a.okSafe}
+     )
+     </foreach>
+     on conflict do nothing
      * */
     fun mybatisInsertBatchPGSQL(datasource: DataSource, table: Table, removePK: Boolean = true): String {
         var pkNames = table.pkNames

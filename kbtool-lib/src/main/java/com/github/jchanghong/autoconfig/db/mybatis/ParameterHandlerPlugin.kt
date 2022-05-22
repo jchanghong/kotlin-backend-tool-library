@@ -1,4 +1,4 @@
-package com.github.jchanghong.autoconfig.db.mybatis;
+package com.github.jchanghong.autoconfig.db.mybatis
 
 /**
 \* Created with IntelliJ IDEA.
@@ -6,18 +6,18 @@ package com.github.jchanghong.autoconfig.db.mybatis;
 \* Date: 2020/1/5
 \* Time: 14:59
 \*/
-//@Intercepts(
+// @Intercepts(
 //    value = [Signature(type = ParameterHandler::class, method = "getParameterObject", args = []),
 //        Signature(type = ParameterHandler::class, method = "setParameters", args = [PreparedStatement::class])
 //    ]
-//)
-//class ParameterHandlerPlugin : Interceptor {
+// )
+// class ParameterHandlerPlugin : Interceptor {
 //    override fun intercept(invocation: Invocation): Any? {
 //        var proceed = invocation.proceed()
 //        return proceed
 //    }
 //
-//}
+// }
 // Object getParameterObject();
 //
 //  void setParameters(PreparedStatement ps)

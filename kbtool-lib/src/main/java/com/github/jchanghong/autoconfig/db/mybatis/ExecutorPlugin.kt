@@ -1,5 +1,4 @@
-package com.github.jchanghong.autoconfig.db.mybatis;
-
+package com.github.jchanghong.autoconfig.db.mybatis
 
 /**
 \* Created with IntelliJ IDEA.
@@ -9,7 +8,7 @@ package com.github.jchanghong.autoconfig.db.mybatis;
 \*/
 //
 //
-//@Intercepts(
+// @Intercepts(
 //    value = [Signature(type = Executor::class, method = "update", args = [MappedStatement::class, Any::class]),
 //        Signature(
 //            type = Executor::class,
@@ -25,20 +24,20 @@ package com.github.jchanghong.autoconfig.db.mybatis;
 //        Signature(type = Executor::class, method = "rollback", args = [Boolean::class]),
 //        Signature(type = Executor::class, method = "close", args = [Boolean::class])
 //    ]
-//)
-//class ExecutorPlugin : Interceptor {
+// )
+// class ExecutorPlugin : Interceptor {
 //
 //    override fun intercept(invocation: Invocation): Any? {
 //        if (invocation.method.name == "update" && AutoConfig.lockDB) {
 //            return 0;
 //        }
 //        var proceed = invocation.proceed()
-////        log.info(invocation.target.javaClass.name+":"+invocation.method.name)
+// //        log.info(invocation.target.javaClass.name+":"+invocation.method.name)
 //        return proceed
 //    }
 //
 //
-//}
+// }
 //  int update(MappedStatement ms, Object parameter) throws SQLException;
 //
 //  <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey cacheKey, BoundSql boundSql) throws SQLException;

@@ -15,7 +15,7 @@ import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
 
-//PGUUIDTypeHandler
+// PGUUIDTypeHandler
 /**
  *JSONObject 和pg中的jsonb类型 if (jdbcType!=JdbcType.OTHER)return
  * @author : jiangchanghong

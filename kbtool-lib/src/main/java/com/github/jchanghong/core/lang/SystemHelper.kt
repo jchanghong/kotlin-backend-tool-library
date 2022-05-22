@@ -9,9 +9,11 @@ fun exeTimeAvg(time: Int, action: () -> Unit): Double {
 }
 
 internal fun main() {
-    println(exeTimeAvg(10) {
-        (1..10000).forEach {
-            RandomUtil.randomString(1000)
+    println(
+        exeTimeAvg(10) {
+            (1..10000).forEach {
+                RandomUtil.randomString(1000)
+            }
         }
-    })
+    )
 }

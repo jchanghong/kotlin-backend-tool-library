@@ -1,4 +1,4 @@
-package com.github.jchanghong.core.util
+package com.github.jchanghong.core.date
 
 import java.util.concurrent.TimeUnit
 
@@ -70,5 +70,4 @@ open class TimeUnitFormatter protected constructor(
             TimeUnit.NANOSECONDS -> get(nanosecond, nanoseconds)
         }
     }
-
 }

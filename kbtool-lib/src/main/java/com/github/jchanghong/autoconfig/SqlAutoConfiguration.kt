@@ -44,7 +44,8 @@ object JchAutoConfig {
 
 /** spring boot 自动配置mybatis plus。多数据库，在spring 容器启动前加入配置！！！*/
 data class MybatisPlusConfig @JvmOverloads constructor(
-    val beanName: String, val dataSource: DataSource,
+    val beanName: String,
+    val dataSource: DataSource,
     val mapperInterfacePackage: String,
     val mapperXMLLocations: String? = null,
     /** 初始化sql,class path 路径文件*/
@@ -69,7 +70,6 @@ annotation class EnableJchSwaggerConfig
 @MustBeDocumented
 @Import(JchRedisCacheConfig::class)
 annotation class EnableJchRedisCacheConfig
-
 
 @Configuration
 open class SqlAutoConfiguration : BeanDefinitionRegistryPostProcessor, ApplicationContextAware {
@@ -118,9 +118,9 @@ open class SqlAutoConfiguration : BeanDefinitionRegistryPostProcessor, Applicati
                     val s = if (params.isNullOrEmpty()) "" else params.joinToString(separator = "") {
                         it?.javaClass?.name + Objects.hashCode(it)
                     }
-                    "${target::class.qualifiedName}${method.name}${s}"
+                    "${target::class.qualifiedName}${method.name}$s"
                 }
-                kInfo("设置cache ${k} setKeyGenerator")
+                kInfo("设置cache $k setKeyGenerator")
             }
         }
     }
@@ -133,23 +133,28 @@ open class SqlAutoConfiguration : BeanDefinitionRegistryPostProcessor, Applicati
             kInfo("配置 AutoConfig.mybatisPlusConfigList ${JchAutoConfig.mybatisPlusConfigList.size}")
             for ((index, mybatisPlusConfig) in JchAutoConfig.mybatisPlusConfigList.withIndex()) {
                 val beanName = mybatisPlusConfig.beanName
-                registry.registerBeanDefinition(beanName + "_sqlSessionFactory", GenericBeanDefinition().apply {
-                    instanceSupplier = Supplier {
-                        DBHelper.getMybatisSqlSessionFactory(
-                            mybatisPlusConfig.dbType,
-                            mybatisPlusConfig.dataSource,
-                            mybatisPlusConfig.mapperInterfacePackage, mybatisPlusConfig.mapperXMLLocations
-                        )
+                registry.registerBeanDefinition(
+                    beanName + "_sqlSessionFactory",
+                    GenericBeanDefinition().apply {
+                        instanceSupplier = Supplier {
+                            DBHelper.getMybatisSqlSessionFactory(
+                                mybatisPlusConfig.dbType,
+                                mybatisPlusConfig.dataSource,
+                                mybatisPlusConfig.mapperInterfacePackage, mybatisPlusConfig.mapperXMLLocations
+                            )
+                        }
+                        this.isPrimary = index == 0
                     }
-                    this.isPrimary = index == 0
-                })
-                registry.registerBeanDefinition(beanName + "_transactionManager",
+                )
+                registry.registerBeanDefinition(
+                    beanName + "_transactionManager",
                     GenericBeanDefinition().apply {
                         instanceSupplier = Supplier {
                             DataSourceTransactionManager(mybatisPlusConfig.dataSource)
                         }
                         this.isPrimary = index == 0
-                    })
+                    }
+                )
                 DBHelper.newMapperScannerConfigurer(
                     mybatisPlusConfig.mapperInterfacePackage,
                     beanName + "_sqlSessionFactory"
@@ -161,7 +166,6 @@ open class SqlAutoConfiguration : BeanDefinitionRegistryPostProcessor, Applicati
         }
         kInfo("postProcessBeanDefinitionRegistry${registry.beanDefinitionCount}")
     }
-
 
     @PostConstruct
     fun inited() {
@@ -185,9 +189,9 @@ class JchSwaggerConfig {
     private fun apiInfo(): ApiInfo {
         return ApiInfoBuilder()
             .title("接口文档")
-            .description("接口文档") //服务条款网址
-            //.termsOfServiceUrl("http://blog.csdn.net/forezp")
-            .version("1.0") //.contact(new Contact("岳阳", "url", "email"))
+            .description("接口文档") // 服务条款网址
+            // .termsOfServiceUrl("http://blog.csdn.net/forezp")
+            .version("1.0") // .contact(new Contact("岳阳", "url", "email"))
             .build()
     }
 }

@@ -23,7 +23,6 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
-
 object JsonHelper {
     /** json to kotlin class ，对个json保证正确性*/
     fun jsonToKotlinClass(json: List<String>): String {
@@ -65,7 +64,6 @@ object JsonHelper {
             LocalDateTimeDeserializer2(DatePattern.NORM_DATETIME_FORMATTER)
         )
         javaTimeModule.addDeserializer(LocalDate::class.java, LocalDateDeserializer2(DatePattern.NORM_DATE_FORMATTER))
-
 
         objectMapper.registerModule(javaTimeModule)
 

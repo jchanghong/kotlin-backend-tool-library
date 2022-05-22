@@ -35,13 +35,16 @@ class CronMap<K, V>(val cron: String) : ConcurrentHashMap<K, V>() {
 
     private fun getAndSchudulValue(supplier: Supplier<V>, key: K, cron: String? = null): V? {
         schedulerIdMap[key]?.let { CronUtil.remove(it) }
-        val scheduleId = CronUtil.schedule(cron ?: this.cron, Runnable {
-            if (lateinitMap[key] == true) {
-                val value = supplier.get()
-                this[key] = value
-                kDebug("调度 已更新key  $key -> $value")
+        val scheduleId = CronUtil.schedule(
+            cron ?: this.cron,
+            Runnable {
+                if (lateinitMap[key] == true) {
+                    val value = supplier.get()
+                    this[key] = value
+                    kDebug("调度 已更新key  $key -> $value")
+                }
             }
-        })
+        )
         schedulerIdMap[key] = scheduleId
         if (lateinitMap[key] == true) {
             val value = supplier.get()
@@ -77,7 +80,7 @@ class CronMap<K, V>(val cron: String) : ConcurrentHashMap<K, V>() {
 object CacheHelp {
     /**
      * CronMap
-    </V></K> */
+     </V></K> */
     fun <K, V> newCronMap(cron: String): CronMap<K, V> {
         return CronMap(cron)
     }

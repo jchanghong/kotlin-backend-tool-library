@@ -2,7 +2,6 @@
 
 package com.github.jchanghong.core.util
 
-
 inline fun Long.toBoolean() = when (this) {
     0L -> false
     else -> true

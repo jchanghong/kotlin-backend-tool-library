@@ -17,7 +17,6 @@ inline fun <T> T.toStringTransform(transform: (T) -> String) = let(transform)
 inline fun <T> T?.toStringTransform(nullString: String = null.toString(), transform: (T) -> String) =
     letOrElse(nullString, transform)
 
-
 inline fun String.splitLines() = split('\n')
 
 inline fun <T> T?.wrap() = "$this"

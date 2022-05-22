@@ -11,11 +11,11 @@ private data class GradleDep(var name: String? = null, var groupAndName: String?
     Comparable<GradleDep> {
     override fun toString(): String {
         return if (!version.isNullOrBlank()) {
-            """    ${name}("${groupAndName}:${version}")"""
+            """    $name("$groupAndName:$version")"""
         } else if (name.isNullOrBlank()) {
-            """    ${groupAndName}"""
+            """    $groupAndName"""
         } else {
-            """    ${name}("${groupAndName}") """
+            """    $name("$groupAndName") """
         }
     }
 
@@ -63,11 +63,11 @@ object GradleHelper {
 
     fun goodVersion(version: String?): Boolean {
         if (version.isNullOrBlank()) return false
-        return (versionToNumbers(version).trim() == version) || (version == versionToNumbers(version) + ".RELEASE")
-                || (version == versionToNumbers(version) + ".RELEASE")
+        return (versionToNumbers(version).trim() == version) || (version == versionToNumbers(version) + ".RELEASE") ||
+            (version == versionToNumbers(version) + ".RELEASE")
     }
 
-    fun upgradeAllDependency(buildFile: File): Unit {
+    fun upgradeAllDependency(buildFile: File) {
         val regex = """(\S+)\s*\(\s*["']\s*(\s*\S+\s*:\s*\S+\s*)\s*["']""".toRegex()
         val regexdependencies = """dependencies\s*\{[^}]+}""".toRegex()
         val readText = buildFile.readText()
@@ -111,7 +111,6 @@ object GradleHelper {
                 }
             }
             gradleDep.toString()
-
         }.sorted()
         val joinToString = list.joinToString("\n", prefix = "dependencies {\n", postfix = "\n}")
         println("end===============================")

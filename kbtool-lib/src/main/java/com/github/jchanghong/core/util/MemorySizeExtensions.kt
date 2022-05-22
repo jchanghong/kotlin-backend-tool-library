@@ -134,5 +134,4 @@ data class BitValue internal constructor(val toBits: Long) {
     operator fun times(mult: Long) = BitValue(mult * toBits)
     operator fun div(div: Long) = BitValue(toBits / div)
     operator fun div(div: BitValue) = toBits / div.toBits
-
 }

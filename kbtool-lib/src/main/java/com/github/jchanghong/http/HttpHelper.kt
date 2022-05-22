@@ -226,7 +226,7 @@ object HttpHelper {
                 .add("userName", pviaLoginUser)
                 .build()
             val response = okHttpClient.newCall(
-                Request.Builder().url("${pviaIpAndPort}/portal/login/ajax/postLoginData.do")
+                Request.Builder().url("$pviaIpAndPort/portal/login/ajax/postLoginData.do")
                     .post(formBody).build()
             ).execute()
             val message = response.bodyString()
@@ -239,14 +239,14 @@ object HttpHelper {
             val formBodyLogin = FormBody.Builder()
                 .add("userName", user)
                 .add("password", passtmp)
-                .add("serviceUrl", """${pviaIpAndPort}/portal/cas/loginPage?service=${pviaIpAndPort}/portal""")
+                .add("serviceUrl", """$pviaIpAndPort/portal/cas/loginPage?service=$pviaIpAndPort/portal""")
                 .add("imageCode", "")
                 .add("codeId", parseObj.getStr("codeId"))
                 .add("userType", "0")
                 .add("lang", "zh_CN")
                 .build()
             val response1 = okHttpClient.newCall(
-                Request.Builder().url("${pviaIpAndPort}/portal/login/ajax/submit.do")
+                Request.Builder().url("$pviaIpAndPort/portal/login/ajax/submit.do")
                     .post(formBodyLogin).build()
             ).execute()
             val loginMessage = response1.bodyString()
@@ -274,7 +274,6 @@ object HttpHelper {
             info(e.localizedMessage, true)
             return false
         }
-
     }
 
     init {
@@ -373,7 +372,6 @@ object HttpHelper {
                 } else {
                     return@addNetworkInterceptor chain.proceed(chain.request())
                 }
-
             }
             .cookieJar(JchCookieJar(cookieStore))
             .sslSocketFactory(createSSLSocketFactory(), JchTrustAllCerts())
@@ -416,16 +414,17 @@ object HttpHelper {
         info("登陆pviaLoginUrlPathCenter.........", true)
 //        close
         oldRes.bodyString()
-        val message = getAsyn("${pviaIpAndPortCenter}/center/api/session?userId=sysadmin").get().bodyString()
-        info("${pviaIpAndPortCenter}/center/api/session?userId=sysadmin" + message)
+        val message = getAsyn("$pviaIpAndPortCenter/center/api/session?userId=sysadmin").get().bodyString()
+        info("$pviaIpAndPortCenter/center/api/session?userId=sysadmin" + message)
         val jsonObject = JSONUtil.parseObj(message)
         val password = SecureUtil.sha256(
-            SecureUtil.sha256(pviaCenterPassword + jsonObject.getByPath("data.salt"))
-                    + jsonObject.getByPath("data.challenge.code")
+            SecureUtil.sha256(pviaCenterPassword + jsonObject.getByPath("data.salt")) +
+                jsonObject.getByPath("data.challenge.code")
         )
         val response1 = postJsonStringAsyn(
-            "${pviaIpAndPortCenter}/center/api/session", """
-                {"user":{"id":"sysadmin"},"password":"${password}",
+            "$pviaIpAndPortCenter/center/api/session",
+            """
+                {"user":{"id":"sysadmin"},"password":"$password",
                 "captcha":"","salt":"${jsonObject.getByPath("data.salt")}",
                 "challenge":{"code":"${jsonObject.getByPath("data.challenge.code")}",
                 "id":"${jsonObject.getByPath("data.challenge.id")}"}}
@@ -446,7 +445,7 @@ object HttpHelper {
     /** 登陆pvia，然后再请求old url*/
     private fun doLoginPviaAndGetCsrf(chain: Interceptor.Chain, oldRequest: Request): Response {
         val loginurlRequest = Request.Builder()
-            .url("${pviaIpAndPort}/portal/cas/loginPage?service=${pviaIpAndPort}/portal").build()
+            .url("$pviaIpAndPort/portal/cas/loginPage?service=$pviaIpAndPort/portal").build()
         val body = chain.proceed(loginurlRequest).bodyString()
         val regex = """enableCsrf\s+\=\s+JSON.parse\('([^']+)'\)""".toRegex()
         val get = regex.find(body)!!.groupValues[1]
@@ -926,7 +925,8 @@ fun main() {
                 mapOf("ss" to "s飒飒 1"),
                 CharsetUtil.CHARSET_UTF_8,
                 true
-            ), CharsetUtil.CHARSET_UTF_8
+            ),
+            CharsetUtil.CHARSET_UTF_8
         )
     )
     HttpHelper.debug = true
@@ -935,4 +935,3 @@ fun main() {
     println(HttpUtil.urlWithForm("http://www.baidu.com/是", mapOf("ss" to "s飒飒 1"), CharsetUtil.CHARSET_UTF_8, true))
     println(HttpHelper.getAsyn("https://www.zhihu.com/creator").get().bodyString())
 }
-

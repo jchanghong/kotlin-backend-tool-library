@@ -3,10 +3,6 @@ package com.github.jchanghong.core.date
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * Created by Vansh Gandhi on 8/5/17.
- */
-
 var Date.calendar: Calendar
     get() = Calendar.getInstance().apply { time = this@calendar }
     set(value) {
@@ -21,26 +17,26 @@ val Date.isToday: Boolean
     get() {
         val calToday = Calendar.getInstance()
         return calToday.get(Calendar.ERA) == calendar.get(Calendar.ERA) &&
-                calToday.get(Calendar.YEAR) == calendar.get(Calendar.YEAR) &&
-                calToday.get(Calendar.DAY_OF_YEAR) == calendar.get(Calendar.DAY_OF_YEAR)
+            calToday.get(Calendar.YEAR) == calendar.get(Calendar.YEAR) &&
+            calToday.get(Calendar.DAY_OF_YEAR) == calendar.get(Calendar.DAY_OF_YEAR)
     }
 
 val Date.isTomorrow: Boolean
     get() {
         val tomorrow = Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, 1) }
         return tomorrow.get(Calendar.YEAR) == calendar.get(Calendar.YEAR) &&
-                tomorrow.get(Calendar.DAY_OF_YEAR) == calendar.get(Calendar.DAY_OF_YEAR)
+            tomorrow.get(Calendar.DAY_OF_YEAR) == calendar.get(Calendar.DAY_OF_YEAR)
     }
 
 // TODO: Fix
-//val Date.isWeekend: Boolean
+// val Date.isWeekend: Boolean
 //    get() {
 //        println(calendar.get(Calendar.DAY_OF_WEEK))
 //        return calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ||
 //                calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
 //    }
 //
-//val Date.isWeekday: Boolean
+// val Date.isWeekday: Boolean
 //    get() {
 //        return !isWeekend
 //    }

@@ -13,7 +13,6 @@ import kotlin.reflect.full.createType
 import kotlin.reflect.full.memberProperties
 
 fun main() {
-
 }
 
 fun Any.beanToMap(): MutableMap<String, Any?> {

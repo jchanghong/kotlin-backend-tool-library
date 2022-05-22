@@ -60,7 +60,7 @@ object JpaCodeHelper {
         jpaCodeHelperSetting: JpaCodeHelperSetting,
         packageName: String,
         tableName: String? = null
-    ): Unit {
+    ) {
         val tables = if (tableName.isNullOrBlank()) MetaUtil.getTables(ds) else listOf(tableName)
         tables.forEach { createCode2(ds, it, packageName, jpaCodeHelperSetting) }
     }
@@ -227,7 +227,6 @@ object JpaCodeHelper {
         }
         template.render(map, file)
         logger.info("template.render:${dbTable.entityExcelNamePath}")
-
     }
 
     private fun entityVoName(
@@ -245,7 +244,6 @@ object JpaCodeHelper {
         }
         template.render(map, file)
         logger.info("template.render:${dbTable.entityVoNamePath}")
-
     }
 
     private fun serviceImplName(
@@ -263,7 +261,6 @@ object JpaCodeHelper {
         }
         template.render(map, file)
         logger.info("template.render:${dbTable.serviceImplName}")
-
     }
 
     private fun serviceName(
@@ -281,7 +278,6 @@ object JpaCodeHelper {
         }
         template.render(map, file)
         logger.info("template.render:${dbTable.serviceName}")
-
     }
 
     private fun repositoryName(
@@ -299,7 +295,6 @@ object JpaCodeHelper {
         }
         template.render(map, file)
         logger.info("template.render:${dbTable.repositoryNamePath}")
-
     }
 
     private fun entityName(
@@ -317,9 +312,7 @@ object JpaCodeHelper {
         }
         template.render(map, file)
         logger.info("template.render:${dbTable.entityNamePath}")
-
     }
-
 }
 
 class DBTable(val table: Table, val packageName: String, val jpaCodeHelperSetting: JpaCodeHelperSetting) {
@@ -386,54 +379,53 @@ class DBTable(val table: Table, val packageName: String, val jpaCodeHelperSettin
             currentDir,
             "${jpaCodeHelperSetting.fileRootPath}/main/kotlin",
             basepackagePath,
-            "/entity/${entityName}.kt"
+            "/entity/$entityName.kt"
         ).toFile().absolutePath
         repositoryNamePath = Path(
             currentDir,
             "${jpaCodeHelperSetting.fileRootPath}/main/kotlin",
             basepackagePath,
-            "/repository/${repositoryName}.kt"
+            "/repository/$repositoryName.kt"
         ).toFile().absolutePath
         serviceNamePath = Path(
             currentDir,
             "${jpaCodeHelperSetting.fileRootPath}/main/kotlin",
             basepackagePath,
-            "/service/${serviceName}.kt"
+            "/service/$serviceName.kt"
         ).toFile().absolutePath
         serviceImplNamePath = Path(
             currentDir,
             "${jpaCodeHelperSetting.fileRootPath}/main/kotlin",
             basepackagePath,
-            "/service/impl/${serviceImplName}.kt"
+            "/service/impl/$serviceImplName.kt"
         ).toFile().absolutePath
         entityVoNamePath = Path(
             currentDir,
             "${jpaCodeHelperSetting.fileRootPath}/main/kotlin",
             basepackagePath,
-            "/entityvo/${entityVoName}.kt"
+            "/entityvo/$entityVoName.kt"
         ).toFile().absolutePath
         entityExcelNamePath = Path(
             currentDir,
             "${jpaCodeHelperSetting.fileRootPath}/main/kotlin",
             basepackagePath,
-            "/entityexcel/${entityExcelName}.kt"
+            "/entityexcel/$entityExcelName.kt"
         ).toFile().absolutePath
         serviceImplTestNamePath = Path(
             currentDir,
             "${jpaCodeHelperSetting.fileRootPath}/test/kotlin",
             basepackagePath,
-            "/service/impl/${serviceImplTestName}.kt"
+            "/service/impl/$serviceImplTestName.kt"
         ).toFile().absolutePath
 
-
 //    ---------------file package
-        entityNamePackage = "${packageName}.entity"
-        repositoryNamePackage = "${packageName}.repository"
-        serviceNamePackage = "${packageName}.service"
-        serviceImplNamePackage = "${packageName}.service.impl"
-        entityVoNamePackage = "${packageName}.entityvo"
-        entityExcelNamePackage = "${packageName}.entityexcel"
-        serviceImplTestNamePackage = "${packageName}.service.impl"
+        entityNamePackage = "$packageName.entity"
+        repositoryNamePackage = "$packageName.repository"
+        serviceNamePackage = "$packageName.service"
+        serviceImplNamePackage = "$packageName.service.impl"
+        entityVoNamePackage = "$packageName.entityvo"
+        entityExcelNamePackage = "$packageName.entityexcel"
+        serviceImplTestNamePackage = "$packageName.service.impl"
 //        -------------columns
 
         columns = table.columns.map { DBColumn(it) }.toMutableList()
@@ -578,13 +570,13 @@ class DBColumn(val column: Column) {
             } //
             NVARCHAR -> {
                 String::class.simpleName
-            }// JDK6
+            } // JDK6
             NCHAR -> {
                 String::class.simpleName
-            }//JDK6
+            } // JDK6
             NCLOB -> {
                 String::class.simpleName
-            }//JDK6
+            } // JDK6
             STRUCT -> {
                 Any::class.simpleName
             }
@@ -602,13 +594,13 @@ class DBColumn(val column: Column) {
             }
             ROWID -> {
                 Long::class.simpleName
-            }// JDK6
+            } // JDK6
             LONGNVARCHAR -> {
                 String::class.simpleName
-            }// JDK6
+            } // JDK6
             SQLXML -> {
                 String::class.simpleName
-            }// JDK6
+            } // JDK6
             DATETIMEOFFSET -> {
                 OffsetDateTime::class.qualifiedName
             } // SQL Server 2008
@@ -641,5 +633,5 @@ fun main() {
         "com.example.lean_spring_framework.autojpa",
         "test_test"
     )
-//JpaCodeHelper.createCode(DbUtil.getDs(), JpaCodeHelperSetting.default(),"com.example.lean_spring_framework.autojpa")
+// JpaCodeHelper.createCode(DbUtil.getDs(), JpaCodeHelperSetting.default(),"com.example.lean_spring_framework.autojpa")
 }

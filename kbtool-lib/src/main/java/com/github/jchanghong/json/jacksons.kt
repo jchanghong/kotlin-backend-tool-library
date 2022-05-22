@@ -13,7 +13,6 @@ import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-
 /**
  * Deserializer for Java 8 temporal [LocalDateTime]s.
  *
@@ -75,8 +74,8 @@ class LocalDateTimeDeserializer2 : JSR310DateTimeDeserializerBase<LocalDateTime>
             if (t == JsonToken.END_ARRAY) {
                 return null
             }
-            if ((t == JsonToken.VALUE_STRING || t == JsonToken.VALUE_EMBEDDED_OBJECT)
-                && context.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)
+            if ((t == JsonToken.VALUE_STRING || t == JsonToken.VALUE_EMBEDDED_OBJECT) &&
+                context.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)
             ) {
                 val parsed = deserialize(parser, context)
                 if (parser.nextToken() != JsonToken.END_ARRAY) {
@@ -192,8 +191,8 @@ class DateDeserializer2 : JSR310DateTimeDeserializerBase<Date> {
             if (t == JsonToken.END_ARRAY) {
                 return null
             }
-            if ((t == JsonToken.VALUE_STRING || t == JsonToken.VALUE_EMBEDDED_OBJECT)
-                && context.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)
+            if ((t == JsonToken.VALUE_STRING || t == JsonToken.VALUE_EMBEDDED_OBJECT) &&
+                context.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)
             ) {
                 val parsed = deserialize(parser, context)
                 if (parser.nextToken() != JsonToken.END_ARRAY) {
@@ -329,8 +328,8 @@ class LocalDateDeserializer2 : JSR310DateTimeDeserializerBase<LocalDate> {
             if (t == JsonToken.END_ARRAY) {
                 return null
             }
-            if (context.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)
-                && (t == JsonToken.VALUE_STRING || t == JsonToken.VALUE_EMBEDDED_OBJECT)
+            if (context.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS) &&
+                (t == JsonToken.VALUE_STRING || t == JsonToken.VALUE_EMBEDDED_OBJECT)
             ) {
                 val parsed = deserialize(parser, context)
                 if (parser.nextToken() != JsonToken.END_ARRAY) {

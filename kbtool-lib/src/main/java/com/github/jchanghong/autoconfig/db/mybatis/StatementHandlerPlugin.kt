@@ -19,7 +19,8 @@ import java.sql.Statement
 \* Time: 14:59
 \*/
 @Intercepts(
-    value = [Signature(type = StatementHandler::class, method = "prepare", args = [Connection::class, Integer::class]),
+    value = [
+        Signature(type = StatementHandler::class, method = "prepare", args = [Connection::class, Integer::class]),
         Signature(type = StatementHandler::class, method = "parameterize", args = [Statement::class]),
         Signature(type = StatementHandler::class, method = "batch", args = [Statement::class]),
         Signature(type = StatementHandler::class, method = "update", args = [Statement::class]),
@@ -52,7 +53,7 @@ class StatementHandlerPlugin : Interceptor {
         return invocation?.proceed()
     }
 }
-//Statement prepare(Connection connection, Integer transactionTimeout)
+// Statement prepare(Connection connection, Integer transactionTimeout)
 //      throws SQLException;
 //
 //  void parameterize(Statement statement)

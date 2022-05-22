@@ -1,6 +1,5 @@
 package com.github.jchanghong.json
 
-
 fun main() {
     val json = """
          {

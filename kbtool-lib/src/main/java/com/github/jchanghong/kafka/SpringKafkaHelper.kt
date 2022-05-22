@@ -53,16 +53,16 @@ class SpringKafkaHelper @JvmOverloads constructor(private val ip: String, privat
         val container: ConcurrentMessageListenerContainer<String?, String?> = createContainer(containerProps, group)
         container.setBeanName("kafkaMessageListenerContainerJCH")
         container.concurrency = concurrency
-//		container.setErrorHandler(object : ConsumerAwareErrorHandler {
-//			override fun handle(
-//				thrownException: Exception?,
-//				data: ConsumerRecord<*, *>?,
-//				consumer: org.apache.kafka.clients.consumer.Consumer<*, *>?
-//			) {
-//				if (data == null || consumer == null) return
-//				consumer.seek(TopicPartition(data.topic(), data.partition()), data.offset() + 1)
-//			}
-//		})
+// 		container.setErrorHandler(object : ConsumerAwareErrorHandler {
+// 			override fun handle(
+// 				thrownException: Exception?,
+// 				data: ConsumerRecord<*, *>?,
+// 				consumer: org.apache.kafka.clients.consumer.Consumer<*, *>?
+// 			) {
+// 				if (data == null || consumer == null) return
+// 				consumer.seek(TopicPartition(data.topic(), data.partition()), data.offset() + 1)
+// 			}
+// 		})
         mMessageListenerContainer = container
         container.start()
     }
@@ -102,7 +102,7 @@ class SpringKafkaHelper @JvmOverloads constructor(private val ip: String, privat
 
     fun consumerProps(group: String): Map<String, Any> {
         val props: MutableMap<String, Any> = HashMap()
-        props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = "${ip}:${port}"
+        props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = "$ip:$port"
         props[ConsumerConfig.GROUP_ID_CONFIG] = group
         props[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = true
         props[ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG] = "5000"
@@ -114,7 +114,7 @@ class SpringKafkaHelper @JvmOverloads constructor(private val ip: String, privat
 
     fun senderProps(): Map<String, Any> {
         val props: MutableMap<String, Any> = HashMap()
-        props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "${ip}:${port}"
+        props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "$ip:$port"
 //        props[ProducerConfig.RETRIES_CONFIG] = 1
 //        props[ProducerConfig.BATCH_SIZE_CONFIG] = 16384
 //        props[ProducerConfig.LINGER_MS_CONFIG] = 1

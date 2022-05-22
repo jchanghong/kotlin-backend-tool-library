@@ -42,7 +42,7 @@ fun main() {
     val array = ClassUtil.scanPackageBySuper("jchanghong.autoconfig.db.mybatis", Interceptor::class.java)
         .map { it.getDeclaredConstructor().newInstance() as? Interceptor }.toTypedArray()
     val db = DbUtil.use()
-    val sqlSessionTemplate: SqlSessionTemplate? = null;
+    val sqlSessionTemplate: SqlSessionTemplate? = null
     val list = sqlSessionTemplate!!.selectList<String>("")
 //    sqlSessionTemplate.
 }
@@ -62,7 +62,7 @@ fun DataSource?.pgConnection(): PgConnection? {
 object DBHelper {
 
     /** 重置序列*/
-    fun pgAlterSequence(ds: DataSource): Unit {
+    fun pgAlterSequence(ds: DataSource) {
         val tables = MetaUtil.getTables(ds)
         for (table in tables) {
             val tb = MetaUtil.getTableMeta(ds, table)
@@ -72,13 +72,13 @@ object DBHelper {
                         .queryNumber(
                             """
                        select max(${column.name}) from ${tb.tableName}
-                    """.trimIndent()
+                            """.trimIndent()
                         )
                     val queryNumber2 = DbUtil.use(ds)
                         .queryNumber(
                             """
                        select  nextval('${tb.tableName}_${column.name}_seq');
-                    """.trimIndent()
+                            """.trimIndent()
                         )
                     if (queryNumber != null || queryNumber2 != null) {
                         val max = max(queryNumber?.toLong() ?: 0L, queryNumber2?.toLong() ?: 0L)
@@ -89,7 +89,7 @@ object DBHelper {
                            alter sequence if exists ${tb.tableName}_${column.name}_seq
                             increment by 1
                              restart with ${max + 1L}
-                        """.trimIndent()
+                                """.trimIndent()
                             )
                     }
                 }
@@ -112,7 +112,7 @@ object DBHelper {
     }
 
     @JvmOverloads
-            /** pg数据库 COPY $tableName to stdout with csv header*/
+    /** pg数据库 COPY $tableName to stdout with csv header*/
     fun pgCopyToFile(ds: DataSource, tableName: String, filepathname: String): Long {
         val copyManager = CopyManager(ds.pgConnection() as BaseConnection)
         val byteArrayOutputStream = File(filepathname).outputStream().buffered()
@@ -122,7 +122,7 @@ object DBHelper {
     }
 
     @JvmOverloads
-            /** pg数据库 COPY $tableName from stdin with csv header*/
+    /** pg数据库 COPY $tableName from stdin with csv header*/
     fun pgCopyFromFile(ds: DataSource, tableName: String, filepathname: String): Long {
         val copyManager = CopyManager(ds.pgConnection() as BaseConnection)
         val bufferedReader = File(filepathname).bufferedReader()
@@ -144,8 +144,10 @@ object DBHelper {
     @JvmStatic
     fun getMybatisSqlSessionTemplate(
         dbType: DbType,
-        dataSource: DataSource, mapperInterfacePackage: String? = null,
-        mapperXMLLocations: String? = null, executorType: ExecutorType = ExecutorType.SIMPLE
+        dataSource: DataSource,
+        mapperInterfacePackage: String? = null,
+        mapperXMLLocations: String? = null,
+        executorType: ExecutorType = ExecutorType.SIMPLE
     ): SqlSessionTemplate {
         val key = dsKey(dataSource)
         val sqlSessionTemplate = mybatisTemplateMap[key]
@@ -163,7 +165,8 @@ object DBHelper {
     @JvmStatic
     fun getMybatisSqlSessionFactory(
         dbType: DbType,
-        dataSource: DataSource, mapperInterfacePackage: String? = null,
+        dataSource: DataSource,
+        mapperInterfacePackage: String? = null,
         mapperXMLLocations: String? = null
     ): SqlSessionFactory {
         val key = dsKey(dataSource)
@@ -238,9 +241,11 @@ object DBHelper {
 
     fun <T : Any> csvToBeanList(csv: String, clazz: Class<T>): List<T> {
         val list = mutableListOf<CsvRow>()
-        CsvUtil.getReader(CsvReadConfig.defaultConfig().apply {
-            this.setContainsHeader(true)
-        })
+        CsvUtil.getReader(
+            CsvReadConfig.defaultConfig().apply {
+                this.setContainsHeader(true)
+            }
+        )
             .read(csv.reader()) { row ->
                 list.add(row)
             }
@@ -269,9 +274,11 @@ object DBHelper {
     fun <T : Any> csvFileToBeanList(csvFilePath: String, clazz: Class<T>): List<T> {
         val bufferedReader = File(csvFilePath).bufferedReader()
         val list = mutableListOf<CsvRow>()
-        CsvUtil.getReader(CsvReadConfig.defaultConfig().apply {
-            this.setContainsHeader(true)
-        })
+        CsvUtil.getReader(
+            CsvReadConfig.defaultConfig().apply {
+                this.setContainsHeader(true)
+            }
+        )
             .read(bufferedReader) { row ->
                 list.add(row)
             }

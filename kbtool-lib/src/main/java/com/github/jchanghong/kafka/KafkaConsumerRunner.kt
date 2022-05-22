@@ -43,7 +43,6 @@ class KafkaConsumerRunner(
                     // Handle new records
                 }
             }
-
         } catch (e: WakeupException) {
             // Ignore exception if closing
             if (!closed.get()) throw e

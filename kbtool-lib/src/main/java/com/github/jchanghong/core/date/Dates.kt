@@ -30,7 +30,6 @@ fun Date?.toStrOrNow(): String {
     return DateUtil.formatDateTime(this)
 }
 
-
 fun LocalDate?.toStrOrNow(): String {
     this ?: return DateUtil.today()
     return LocalDateTimeUtil.formatNormal(this)

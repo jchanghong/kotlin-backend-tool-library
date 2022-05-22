@@ -1,4 +1,4 @@
-package com.github.jchanghong.autoconfig.db.mybatis;
+package com.github.jchanghong.autoconfig.db.mybatis
 
 /**
 \* Created with IntelliJ IDEA.
@@ -6,12 +6,12 @@ package com.github.jchanghong.autoconfig.db.mybatis;
 \* Date: 2020/1/5
 \* Time: 14:59
 \*/
-//@Intercepts(
+// @Intercepts(
 //    value = [Signature(type = ResultSetHandler::class, method = "handleResultSets", args = [Statement::class]),
 //        Signature(type = ResultSetHandler::class, method = "handleOutputParameters", args = [CallableStatement::class])
 //    ]
-//)
-//class ResultSetHandlerPlugin : Interceptor {
+// )
+// class ResultSetHandlerPlugin : Interceptor {
 //    override fun intercept(invocation: Invocation): Any? {
 //        var proceed = invocation.proceed()
 //        if (invocation.method.name == "handleResultSets") {
@@ -25,10 +25,9 @@ package com.github.jchanghong.autoconfig.db.mybatis;
 //            return
 //        }
 //    }
-//}
+// }
 
 fun main() {
-
 }
 // <E> List<E> handleResultSets(Statement stmt) throws SQLException;
 //

@@ -14,7 +14,7 @@ inline fun attr(vararg attributes: Pair<String, String>): Attributes = mapOf(*at
 inline fun String.tag(tag: String) = "<$tag>$this</$tag>"
 
 inline fun String.tag(tag: String, attributes: Attributes) = "<$tag${
-    attributes.joinToString(separator = " ", prefix = " ", postfix = "", transform = { it.joinToString("=") }).trim()
+attributes.joinToString(separator = " ", prefix = " ", postfix = "", transform = { it.joinToString("=") }).trim()
 }>$this</$tag>"
 
 inline fun String.h(size: Int = 1, attributes: Attributes = attr()) = tag("h$size", attributes)

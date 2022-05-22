@@ -37,7 +37,7 @@ internal object Json2kotlinclass {
 
         return """
        data class C1($joinToString)
-    """.trimIndent()
+        """.trimIndent()
     }
 }
 
@@ -76,7 +76,7 @@ fun main() {
     
         "rfidIdentifier": "01500234024416",
         "longitude": 0,
-        "sub":${json}
+        "sub":$json
     }
     """.trimIndent()
 
@@ -94,7 +94,7 @@ fun main() {
         
         "rfidIdentifier": "01500234024416",
         "longitude": 0,
-        "sub":[${json}]
+        "sub":[$json]
     }
     """.trimIndent()
 

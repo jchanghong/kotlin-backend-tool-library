@@ -45,7 +45,6 @@ inline fun <reified T> Array<T>.shuffle(generator: Random = Random()): Array<T> 
     }
 }
 
-
 inline fun <reified T> Array<Array<T>>.copy() = Array(size) { get(it).copyOf() }
 
 inline val <T> Array<Array<T>>.rows get() = indices

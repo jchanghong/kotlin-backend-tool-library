@@ -21,6 +21,5 @@ object DSHolder {
         return dataSource
     }
 
-
     val check_db by lazy { DbUtil.getDs("check_db")!! }
 }

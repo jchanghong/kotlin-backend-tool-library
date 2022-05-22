@@ -145,4 +145,3 @@ inline fun <T, R> ((T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R =
 
 inline fun <T, R> ((T, T, T, T, T, T) -> R).collapseParams(): (Array<T>) -> R =
     { a -> a.requireSize(6); this(a[0], a[1], a[2], a[3], a[4], a[5]) }
-

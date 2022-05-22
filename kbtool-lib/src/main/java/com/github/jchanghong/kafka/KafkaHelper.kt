@@ -140,7 +140,6 @@ class KafkaHelper(
         }
     }
 
-
     fun startConsumer() {
         check(threadCount > 0)
         threadExecutor = Executors.newFixedThreadPool(
@@ -190,16 +189,19 @@ class KafkaHelper(
     }
 }
 
-
 fun main() {
 //    println(Long.MAX_VALUE / 1000 / 3600)
-    val kafkaHelper = KafkaHelper("55555.1.172.137:9092", "jchtest", listOf("ORIGIN_SNAP_IMAGE_INFO_TOPIC"), Consumer {
-        val value =
-            it.value()
+    val kafkaHelper = KafkaHelper(
+        "55555.1.172.137:9092", "jchtest", listOf("ORIGIN_SNAP_IMAGE_INFO_TOPIC"),
+        Consumer {
+            val value =
+                it.value()
 //        println(it.partition().toString()+"offser"+it.offset().toString())
 //    val kafkaHelper = KafkaHelper("55555.1.43.110:9092", "jchtest", listOf("camera_status_r2p16"), Consumer {
 //        println(it.value())
-    }, OffsetReset.latest, 10, 10000)
+        },
+        OffsetReset.latest, 10, 10000
+    )
 //    try {
 //        kafkaHelper.deleteTopic("ITMS_CoreService_RealtimeDetectorCommand")
 //    } catch (e: Exception) {

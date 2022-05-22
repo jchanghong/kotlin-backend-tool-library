@@ -45,7 +45,7 @@ object FileHelper {
         }
     }
 
-    private fun File.myDelete(): Unit {
+    private fun File.myDelete() {
         if (this.isDirectory) return
         val name = this.name.trimEnd()
         if (name.endsWith(".lastUpdated") || name.endsWith("_remote.repositories")) {
@@ -55,8 +55,8 @@ object FileHelper {
     }
 
     @JvmOverloads
-            /**删除文件   .lastUpdated _remote.repositories */
-    fun removeMavenLastAndRemoteFiles(path: String, group: String = ""): Unit {
+    /**删除文件   .lastUpdated _remote.repositories */
+    fun removeMavenLastAndRemoteFiles(path: String, group: String = "") {
         var parent = File(path)
         if (!parent.exists() || parent.isFile) {
             error(path + "目录不存在")
@@ -71,7 +71,6 @@ object FileHelper {
     }
 }
 
-
 fun main() {
     println(
         FileHelper.compareContent(
@@ -79,5 +78,4 @@ fun main() {
             File("D:\\暂时\\check2_camera_info渝中2.csv")
         )
     )
-
 }

@@ -4,4 +4,3 @@
  * @author : jiangchanghong
  */
 package com.github.jchanghong.autoconfig
-

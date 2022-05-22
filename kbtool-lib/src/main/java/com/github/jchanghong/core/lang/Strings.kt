@@ -34,6 +34,3 @@ fun String.toGzipUtf8(): String {
 fun String.toUnGzipUtf8(): String {
     return ZipUtil.unGzip(Base64.decode(this), StandardCharsets.UTF_8.toString())
 }
-
-
-

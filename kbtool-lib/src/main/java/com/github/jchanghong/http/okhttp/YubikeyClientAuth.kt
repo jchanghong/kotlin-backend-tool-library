@@ -28,8 +28,8 @@ package com.github.jchanghong.http.okhttp
  *
  * Install OpenSC separately. On a mac `brew cast install opensc`.
  */
-//@SuppressSignatureCheck
-//class YubikeyClientAuth() {
+// @SuppressSignatureCheck
+// class YubikeyClientAuth() {
 //  fun run() {
 //    // The typical PKCS11 slot, may vary with different hardware.
 //    val slot = 0
@@ -74,9 +74,9 @@ package com.github.jchanghong.http.okhttp
 //      println(response.body!!.string())
 //    }
 //  }
-//}
+// }
 //
-//object ConsoleCallbackHandler : CallbackHandler {
+// object ConsoleCallbackHandler : CallbackHandler {
 //  override fun handle(callbacks: Array<Callback>) {
 //    for (callback in callbacks) {
 //      if (callback is PasswordCallback) {
@@ -93,8 +93,8 @@ package com.github.jchanghong.http.okhttp
 //      }
 //    }
 //  }
-//}
+// }
 //
-//fun main() {
+// fun main() {
 //  YubikeyClientAuth().run()
-//}
+// }

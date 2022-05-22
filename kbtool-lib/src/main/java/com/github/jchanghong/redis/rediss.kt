@@ -20,7 +20,7 @@ class RedisHelper(ip: String, port: Int = 6379, password: String? = null) {
     val pubSubConnection by lazy { redisClient.connectPubSub() }
     val redisCommands: RedisCommands<String, String> = connect.sync()
     val asyncCommands: RedisAsyncCommands<String, String> = connect.async()
-    fun subscribe(topics: List<String>, consumer: Consumer<Pair<String, String?>>): Unit {
+    fun subscribe(topics: List<String>, consumer: Consumer<Pair<String, String?>>) {
         pubSubConnection.addListener(object : RedisPubSubAdapter<String, String>() {
             override fun message(channel: String, message: String?) {
                 consumer.accept(channel to message)

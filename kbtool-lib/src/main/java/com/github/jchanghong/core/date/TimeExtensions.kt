@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE", "UNUSED_PARAMETER")
 
-package com.github.jchanghong.core.util
+package com.github.jchanghong.core.date
 
 import java.text.SimpleDateFormat
 import java.time.*
@@ -34,7 +34,6 @@ object Dates {
         of(date.fromNow.toLocalDate(), time.fromNow.toLocalTime())
 
     fun of(date: Period, time: Duration, ago: ago): LocalDateTime = of(date.ago.toLocalDate(), time.ago.toLocalTime())
-
 }
 
 inline fun now() = LocalDateTime.now()
