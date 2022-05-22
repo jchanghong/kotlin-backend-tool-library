@@ -3,7 +3,7 @@ package org.apache.myfaces.core
 import cn.hutool.core.date.DatePattern
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer
-import com.github.jchanghong.gson.JsonHelper
+import com.github.jchanghong.json.JsonHelper
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer

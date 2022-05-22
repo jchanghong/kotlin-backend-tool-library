@@ -1,4 +1,4 @@
-package com.github.jchanghong.gson
+package com.github.jchanghong.json
 
 import cn.hutool.core.date.DatePattern
 import cn.hutool.json.JSONUtil

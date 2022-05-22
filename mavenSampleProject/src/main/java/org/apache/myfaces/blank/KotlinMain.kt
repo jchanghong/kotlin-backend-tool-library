@@ -1,6 +1,6 @@
 package org.apache.myfaces.blank
 
-import com.github.jchanghong.gson.toJsonStr
+import com.github.jchanghong.json.toJsonStr
 import org.springframework.boot.runApplication
 import org.springframework.stereotype.Component
 

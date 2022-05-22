@@ -6,8 +6,6 @@ import io.lettuce.core.api.StatefulRedisConnection
 import io.lettuce.core.api.async.RedisAsyncCommands
 import io.lettuce.core.api.sync.RedisCommands
 import io.lettuce.core.pubsub.RedisPubSubAdapter
-import org.springframework.data.redis.core.RedisTemplate
-import org.springframework.data.redis.core.StringRedisTemplate
 import java.util.function.Consumer
 
 /** 一个对象对应一个redis服务器链接，非spring环境下可以使用*/

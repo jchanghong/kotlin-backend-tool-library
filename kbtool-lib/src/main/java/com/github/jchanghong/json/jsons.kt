@@ -1,4 +1,4 @@
-package com.github.jchanghong.gson
+package com.github.jchanghong.json
 
 import cn.hutool.json.JSONObject
 import cn.hutool.json.JSONUtil

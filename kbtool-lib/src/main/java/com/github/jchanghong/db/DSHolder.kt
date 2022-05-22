@@ -1,4 +1,4 @@
-package com.github.jchanghong.database
+package com.github.jchanghong.db
 
 import cn.hutool.db.DbUtil
 import org.springframework.boot.jdbc.DataSourceBuilder

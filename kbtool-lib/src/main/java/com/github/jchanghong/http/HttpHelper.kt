@@ -33,7 +33,8 @@ import javax.net.ssl.TrustManager
  * pvia开头的函数就是
  * */
 object HttpHelper {
-    private val newScheduledThreadPool2=Executors.newScheduledThreadPool(2)
+    private val newScheduledThreadPool2 = Executors.newScheduledThreadPool(2)
+
     /** 每2分钟获取一次，防止登录过期*/
     fun pvia_startTimer() {
         newScheduledThreadPool2.scheduleWithFixedDelay({

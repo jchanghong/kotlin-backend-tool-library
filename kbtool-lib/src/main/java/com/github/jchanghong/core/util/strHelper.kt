@@ -10,6 +10,7 @@ fun String.toCamelCase(): String {
 fun String.toUnderlineCase(): String {
     return StrUtil.toUnderlineCase(this)
 }
+
 fun String.upperFirst(): String {
     return StrUtil.upperFirst(this)
 }

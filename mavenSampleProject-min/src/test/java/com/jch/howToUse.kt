@@ -1,6 +1,6 @@
 package com.jch
 
-import com.github.jchanghong.gson.toJsonStr
+import com.github.jchanghong.json.toJsonStr
 import com.github.jchanghong.kotlin.toDateJdk7OrNull
 import com.github.jchanghong.kotlin.toLocalDateTime
 import com.github.jchanghong.kotlin.toStrOrNow

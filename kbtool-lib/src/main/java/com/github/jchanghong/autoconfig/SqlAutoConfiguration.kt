@@ -6,8 +6,8 @@ import cn.hutool.db.DbUtil
 import com.baomidou.mybatisplus.annotation.DbType
 import com.github.jchanghong.autoconfig.db.mybatis.JBeanNameGenerator
 import com.github.jchanghong.autoconfig.db.mybatis.JchMyBatisPlugin
-import com.github.jchanghong.database.DBHelper
-import com.github.jchanghong.gson.logger
+import com.github.jchanghong.db.DBHelper
+import com.github.jchanghong.log.kError
 import com.github.jchanghong.log.kInfo
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory
 import org.springframework.beans.factory.support.BeanDefinitionRegistry
@@ -89,7 +89,7 @@ open class SqlAutoConfiguration : BeanDefinitionRegistryPostProcessor, Applicati
                             val sqlList = StrUtil.splitTrim(ResourceUtil.readUtf8Str(mybatisPlusConfig.initSql), ";")
                             for (sql in sqlList) {
                                 kotlin.runCatching {
-                                    logger.info(sql + "\n")
+                                    kInfo(sql + "\n")
                                     DbUtil.use(mybatisPlusConfig.dataSource).execute(sql)
                                 }
                             }
@@ -101,7 +101,7 @@ open class SqlAutoConfiguration : BeanDefinitionRegistryPostProcessor, Applicati
 //                                scriptRunner.runScript(ResourceUtil.getUtf8Reader(mybatisPlusConfig.initSql))
 //                            }
                         } catch (e: Exception) {
-                            logger.error(e.localizedMessage, e)
+                            kError(e.localizedMessage, e)
                         }
                     }
                 }

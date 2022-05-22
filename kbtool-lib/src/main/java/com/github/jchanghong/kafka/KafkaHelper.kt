@@ -2,7 +2,6 @@ package com.github.jchanghong.kafka
 
 import cn.hutool.core.thread.ThreadUtil
 import cn.hutool.core.util.RandomUtil
-import com.github.jchanghong.gson.logger
 import com.github.jchanghong.log.kError
 import com.github.jchanghong.log.kInfo
 import org.apache.kafka.clients.admin.*
@@ -187,7 +186,7 @@ class KafkaHelper(
         ThreadUtil.sleep(3000)
         threadExecutor.shutdown()
         threadExecutor.awaitTermination(10, TimeUnit.SECONDS)
-        logger.info("shutdown KafkaHelper")
+        kInfo("shutdown KafkaHelper")
     }
 }
 

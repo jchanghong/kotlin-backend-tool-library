@@ -1,4 +1,4 @@
-package com.github.jchanghong.gson
+package com.github.jchanghong.json
 
 
 fun main() {

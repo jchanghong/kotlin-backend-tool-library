@@ -17,8 +17,8 @@ internal class LogHelper {
  */
 internal fun main() {
     LogHelper().log()
-    kError("sasas",null)
-    kInfo("sasa{}","hello")
+    kError("sasas", null)
+    kInfo("sasa{}", "hello")
     kDebug("sasasas")
 }
 

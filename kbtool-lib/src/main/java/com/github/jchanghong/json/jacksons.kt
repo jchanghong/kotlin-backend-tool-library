@@ -1,4 +1,4 @@
-package com.github.jchanghong.gson
+package com.github.jchanghong.json
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.core.JsonParser

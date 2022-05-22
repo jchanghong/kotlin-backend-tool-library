@@ -1,6 +1,6 @@
 @file:JvmName("zidongshengc")
 
-package com.github.jchanghong.database
+package com.github.jchanghong.db
 
 import cn.hutool.core.date.DateUtil
 import cn.hutool.core.util.StrUtil

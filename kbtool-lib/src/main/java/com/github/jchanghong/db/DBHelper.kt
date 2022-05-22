@@ -1,4 +1,4 @@
-package com.github.jchanghong.database
+package com.github.jchanghong.db
 
 import cn.hutool.core.bean.BeanUtil
 import cn.hutool.core.io.IoUtil
@@ -17,8 +17,8 @@ import com.baomidou.mybatisplus.core.MybatisConfiguration
 import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean
 import com.github.jchanghong.autoconfig.db.mybatis.MybatisPlusConfig
-import com.github.jchanghong.gson.toJsonToMap
 import com.github.jchanghong.io.IOHelper
+import com.github.jchanghong.json.toJsonToMap
 import com.github.jchanghong.log.kInfo
 import com.zaxxer.hikari.pool.HikariProxyConnection
 import org.apache.ibatis.plugin.Interceptor
