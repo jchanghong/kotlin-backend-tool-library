@@ -6,7 +6,7 @@
  *     <li>{@link com.github.jchanghong.cron.task.Task} 定时任务实现，用于定义具体的任务</li>
  *     <li>{@link com.github.jchanghong.cron.pattern.CronPattern} 定时任务表达式，用于定义任务触发时间</li>
  * </ul>
- *
+ * <p>
  * 同时，提供了{@link com.github.jchanghong.cron.CronUtil}工具类，维护一个全局的{@link com.github.jchanghong.cron.Scheduler}。
  *
  * @author looly

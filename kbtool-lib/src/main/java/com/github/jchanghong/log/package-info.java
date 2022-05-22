@@ -3,6 +3,5 @@
  * 根据加入ClassPath中的jar包动态检测日志实现的方式，使日志使用更加便利灵活。
  *
  * @author looly
- *
  */
 package com.github.jchanghong.log;
