@@ -5,7 +5,9 @@ A kotlin backend development tool library,mainly includes common kotlin extensio
 ### kotlin是java生态中最好用的库！！！
 Spring Initializr默认生成的kotlin项目只能在kotlin代码中调用java。不能互相调用。
 由于kotlin和java的良好互操作性，可以在任何项目中加入kotlin代码，不影响现有的java代码。
-# 项目使用(引入maven parent)
+
+# 如何使用？
+## 1.引入maven parent
 配置kotlin所有插件，还包括格式化插件，findBug插件等常用插件只需要将
 ```xml
 <parent>
@@ -23,7 +25,7 @@ Spring Initializr默认生成的kotlin项目只能在kotlin代码中调用java�
 </parent>
 ```
 
-# 项目使用(引入kbtool-lib打包java后端开发常用类库)
+## 2.加入kbtool-lib依赖(如果只是想增加kotlin插件配置，不需要引入)
 通过加入如下依赖,就可以把后端常用库全部引入，
 比如guava，hutool，common系列，spring-mvc,validation,json常用库，http，retry常用库等等
 ```xml

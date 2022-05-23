@@ -6,21 +6,6 @@
      |-->
     <servers>
         <server>
-            <id>PBG-release</id>
-            <username>maven-pbg-cm</username>
-            <password>helloworld</password>
-        </server>
-        <server>
-            <id>PBG-snapshot</id>
-            <username>maven-pbg</username>
-            <password>helloworld</password>
-        </server>
-        <server>
-            <id>maven-down</id>
-            <username>maven-down</username>
-            <password>maven-down</password>
-        </server>
-        <server>
             <id>oss</id>
             <username>jchanghong</username>
             <password>!b58r5gsHu*0</password>
@@ -63,7 +48,6 @@
 
     <activeProfiles>
         <activeProfile>aliyun_public</activeProfile>
-        <activeProfile>maven-down</activeProfile>
     </activeProfiles>
 
     <pluginGroups>
