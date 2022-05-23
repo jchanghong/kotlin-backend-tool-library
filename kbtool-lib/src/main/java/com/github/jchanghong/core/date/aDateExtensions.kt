@@ -1,8 +1,18 @@
 package com.github.jchanghong.core.date
 
+import cn.hutool.core.date.DateUtil
 import java.text.SimpleDateFormat
 import java.util.*
-
+fun Date?.format(format: String): String = DateUtil.format(this ?: Date(), format)
+fun Date?.formatDateTime(): String = DateUtil.formatDateTime(this ?: Date())
+fun Date?.formatDate(): String = DateUtil.formatDate(this ?: Date())
+fun Date?.formatTime(): String = DateUtil.formatTime(this ?: Date())
+fun Date?.beginOfDay(): Date = DateUtil.beginOfDay(this ?: Date())
+fun Date?.endOfDay(): Date = DateUtil.endOfDay(this ?: Date())
+fun Date?.beginOfMonth(): Date = DateUtil.beginOfMonth(this ?: Date())
+fun Date?.endOfMonth(): Date = DateUtil.endOfMonth(this ?: Date())
+fun Date?.endOfYear(): Date = DateUtil.endOfYear(this ?: Date())
+fun Date?.beginOfYear(): Date = DateUtil.beginOfYear(this ?: Date())
 var Date.calendar: Calendar
     get() = Calendar.getInstance().apply { time = this@calendar }
     set(value) {

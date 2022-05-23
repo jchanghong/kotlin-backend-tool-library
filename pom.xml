@@ -6,7 +6,7 @@
 	<packaging>pom</packaging>
 	<groupId>com.github.jchanghong</groupId>
 	<artifactId>kbtool-parent</artifactId>
-	<version>2.7.0-M1</version>
+	<version>2.7.0</version>
 	<name>kbtool-parent</name>
 	<description>支持java和kotlin混合编程的maven项目，把后端基本常用的库全部引入，避免到处找依赖</description>
 	<url>https://github.com/jchanghong/kotlin-backend-tool-library.git</url>

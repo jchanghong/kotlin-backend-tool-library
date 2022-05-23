@@ -1,5 +1,6 @@
 package com.github.jchanghong.json
 
+import cn.hutool.json.JSONArray
 import cn.hutool.json.JSONObject
 import cn.hutool.json.JSONUtil
 import com.github.jchanghong.lang.exeTimeAvg
@@ -108,4 +109,12 @@ fun Any?.toJsonStr(): String? {
 
 fun String.toFormatJsonStr(): String {
     return JSONUtil.formatJsonStr(this)
+}
+fun String?.toJSONObject(): JSONObject? {
+    this ?: return null
+    return JSONUtil.parseObj(this)
+}
+fun String?.toJSONArray(): JSONArray? {
+    this ?: return null
+    return JSONUtil.parseArray(this)
 }
